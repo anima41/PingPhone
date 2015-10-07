@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity
+            android:name=".SkypeSetting"
+            android:label="@string/title_activity_skype_setting" >
+        </activity>
+        <activity
+            android:name=".Standby"
+            android:label="@string/title_activity_standby" >
+        </activity>
     </application>
 
 </manifest>
