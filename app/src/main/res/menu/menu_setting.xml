@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_skype"
+        android:title="@string/menu_skype">
+    </item>
+    <item
+        android:id="@+id/menu_history"
+        android:title="@string/menu_history">
+    </item>
+    <item
+        android:id="@+id/menu_passward"
+        android:title="@string/menu_password">
+    </item>
+</menu>

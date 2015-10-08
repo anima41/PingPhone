@@ -20,4 +20,8 @@
     <string name="skype_button">押</string>
     <string name="title_activity_standby">Standby</string>
 
+    <string name="menu_skype">スカイプ名の設定</string>
+    <string name="menu_history">履歴</string>
+    <string name="menu_password">パスワード変更</string>
+
 </resources>
