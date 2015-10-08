@@ -1,7 +1,9 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -24,6 +26,9 @@ public class Standby extends Activity implements OnClickListener {
     private Timer mTimer;
     // time format
     private static SimpleDateFormat mSimpleDataFormat = new SimpleDateFormat("yyyy年　MM月dd日　HH:mm:ss");
+
+    //button_down set
+    protected Drawable btn_down;
 
 
     @Override
@@ -70,9 +75,14 @@ public class Standby extends Activity implements OnClickListener {
         Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
         //layout set
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
+        //button_down set
+        Resources res = getResources();
+        btn_down = (Drawable)res.getDrawable(R.drawable.button_down);
 
         if (v == btn) {
             layout.setBackgroundColor(Color.DKGRAY);
+            btn.setBackground(btn_down);
+
         }
 
     }

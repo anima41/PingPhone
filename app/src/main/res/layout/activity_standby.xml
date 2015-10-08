@@ -19,7 +19,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/circle_button"
+        android:background="@drawable/button_up"
         android:text="@string/skype_button"
         android:textSize="50dp"/>
 
