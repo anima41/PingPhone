@@ -4,15 +4,18 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SkypeSetting extends ActionBarActivity {
@@ -40,8 +43,30 @@ public class SkypeSetting extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
+
+                //sql sengen
+                MyOpenHelper helper = new MyOpenHelper(SkypeSetting.this);
+                final SQLiteDatabase db = helper.getWritableDatabase();
+
+                //editText sengen
+                EditText et = (EditText)findViewById(R.id.id_text);
+
+                //moji wo toru
+                SpannableStringBuilder sb = (SpannableStringBuilder)et.getText();
+                String skypeID = sb.toString();
+
+                //sql ni set
+                String sql = "insert into setting values('" + skypeID + "')";
+                db.execSQL(sql);
+
+                //debug
+                Toast toast = Toast.makeText(SkypeSetting.this, skypeID, Toast.LENGTH_LONG);
+                toast.show();
+
+
+
                 //edittext wo shutoku site call
-                btnSet(etRecepient.getText().toString(), mContext);
+                //btnSet(etRecepient.getText().toString(), mContext);
             }
         });
     }
