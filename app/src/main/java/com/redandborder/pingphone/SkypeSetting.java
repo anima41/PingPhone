@@ -56,7 +56,7 @@ public class SkypeSetting extends ActionBarActivity {
                 String skypeID = sb.toString();
 
                 //sql ni set
-                String sql = "insert into setting values('" + skypeID + "')";
+                String sql = "insert into setting values('" + skypeID + "');";
                 db.execSQL(sql);
 
                 //debug

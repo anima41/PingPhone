@@ -8,13 +8,12 @@ import android.view.View;
 public class MyOpenHelper extends SQLiteOpenHelper {
 
     public MyOpenHelper(Context context) {
-        super(context, "setDB", null, 1);
-    }
+        super(context, "skypeID", null, 1);
+      }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table setting(" + " skype text not null," + "password integer not null"
-                + ");");
+        db.execSQL("create table setting(" + " skype text not null " + ");");
     }
 
     @Override
