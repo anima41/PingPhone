@@ -107,17 +107,21 @@ public class Standby extends Activity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item){
       switch (item.getItemId()){
           case R.id.menu_skype:
-              Intent intent = new Intent(Standby.this, SkypeSetting.class);
-              startActivity(intent);
+              Intent intent1 = new Intent(Standby.this, SkypeSetting.class);
+              startActivity(intent1);
               Standby.this.finish();
               return true;
 
           case R.id.menu_history:
-
+              Intent intent2 = new Intent(Standby.this, History.class);
+              startActivity(intent2);
+              Standby.this.finish();
               return true;
 
           case R.id.menu_passward:
-
+              Intent intent3 = new Intent(Standby.this, PasswordSetting.class);
+              startActivity(intent3);
+              Standby.this.finish();
               return true;
 
           default:
