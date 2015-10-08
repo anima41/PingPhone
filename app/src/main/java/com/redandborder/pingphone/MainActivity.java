@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     // SplashHandler
     class SplashHandler implements Runnable {
         public void run() {
-            Intent intent = new Intent(MainActivity.this, Standby.class);
+            Intent intent = new Intent(MainActivity.this, SkypeSetting.class);
             startActivity(intent);
             MainActivity.this.finish();
         }

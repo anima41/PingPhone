@@ -1,6 +1,7 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -106,7 +107,9 @@ public class Standby extends Activity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item){
       switch (item.getItemId()){
           case R.id.menu_skype:
-
+              Intent intent = new Intent(Standby.this, SkypeSetting.class);
+              startActivity(intent);
+              Standby.this.finish();
               return true;
 
           case R.id.menu_history:
@@ -116,6 +119,9 @@ public class Standby extends Activity implements OnClickListener {
           case R.id.menu_passward:
 
               return true;
+
+          default:
+              break;
       }
         return false;
     }

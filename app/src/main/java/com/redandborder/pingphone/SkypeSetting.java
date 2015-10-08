@@ -33,8 +33,9 @@ public class SkypeSetting extends ActionBarActivity {
 
     private void initialize() {
         //hensuu sengen
-        mContext = this; //iranai?
+        mContext = this;
         etRecepient = (EditText) findViewById(R.id.id_text);
+        btnSet = (Button) findViewById(R.id.skype_set);
         btnSet.setOnClickListener(new View.OnClickListener() {
 
             @Override
