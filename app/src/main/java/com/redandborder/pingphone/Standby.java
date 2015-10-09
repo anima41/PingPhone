@@ -84,7 +84,7 @@ public class Standby extends Activity implements OnClickListener {
         }, 0, 1000);
     }
 
-    public void onClick(View v,Context ctx) {
+    public void onClick(View v) {
         // button set
         Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
         //layout set
@@ -98,29 +98,34 @@ public class Standby extends Activity implements OnClickListener {
             layout.setBackgroundColor(Color.DKGRAY);
             btn.setBackground(btn_down);
 
-            //skype call
-            try {
-                // skype install kakunin
-                if (!isSkypeClientInstalled(ctx)) {
-                    // not install
-                    goToMarket(ctx);
-                    return;
-                }
-                //install ok
-                // intent sakusei
-                String name = "aq_aqua"; //ToDo kaeru
-                Intent skype_intent = new Intent("android.intent.action.VIEW");
-                Uri uri = Uri.parse("skype:" + name); //name dokode shutoku siterunoka?
-                // intent set
-                skype_intent.setData(uri);
-                // start
-                ctx.startActivity(skype_intent);
-            } catch (ActivityNotFoundException e) {
-                //not install no baai errror rog
-                Log.e("SKYPE CALL", "Skype failed", e); //ToDo nani wo kakeba yoika?
+            skypeCall("aq_aqua",this);
+
+         }
+    }
+
+    // skypeCall no nakami
+    private static void skypeCall(String name, Context ctx) {
+        try {
+            // skype nakatta baai goToMarket yobidasi
+            if (!isSkypeClientInstalled(ctx)) {
+                goToMarket(ctx);
+                return;
             }
 
+            // inten sakusei
+            Intent skype_intent = new Intent("android.intent.action.VIEW");
+            Uri uri = Uri.parse("skype:" + name);
+            // intent set
+            skype_intent.setData(uri);
+            // start
+            ctx.startActivity(skype_intent);
+
+
+        } catch (ActivityNotFoundException e) {
+            //not install no baai errror rog
+            Log.e("SKYPE CALL", "Skype failed", e);
         }
+
     }
 
         // skype ga not install no baai
