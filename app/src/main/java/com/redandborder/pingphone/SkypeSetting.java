@@ -56,13 +56,12 @@ public class SkypeSetting extends ActionBarActivity {
                 String skypeID = sb.toString();
 
                 //sql ni set
-                String sql = "insert into skype values('" + skypeID + "');";
+                String sql = "UPDATE skype SET skype = ('"+ skypeID +"') ;";
                 db.execSQL(sql);
 
                 //debug
-                Toast toast = Toast.makeText(SkypeSetting.this, skypeID, Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(SkypeSetting.this, sql, Toast.LENGTH_LONG);
                 toast.show();
-
 
 
                 //edittext wo shutoku site call
