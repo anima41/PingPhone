@@ -1,12 +1,17 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +41,8 @@ public class Standby extends Activity implements OnClickListener {
 
     //menu button
     private Button btn_menu;
+
+    private static final String TAG = "Standby";
 
 
     @Override
@@ -77,22 +84,73 @@ public class Standby extends Activity implements OnClickListener {
         }, 0, 1000);
     }
 
-    public void onClick(View v) {
+    public void onClick(View v,Context ctx) {
         // button set
         Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
         //layout set
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_down set
         Resources res = getResources();
-        btn_down = (Drawable)res.getDrawable(R.drawable.button_down);
+        btn_down = (Drawable) res.getDrawable(R.drawable.button_down);
 
         if (v == btn) {
+            // btn tap
             layout.setBackgroundColor(Color.DKGRAY);
             btn.setBackground(btn_down);
 
+            //skype call
+            try {
+                // skype install kakunin
+                if (!isSkypeClientInstalled(ctx)) {
+                    // not install
+                    goToMarket(ctx);
+                    return;
+                }
+                //install ok
+                // intent sakusei
+                String name = "aq_aqua"; //ToDo kaeru
+                Intent skype_intent = new Intent("android.intent.action.VIEW");
+                Uri uri = Uri.parse("skype:" + name); //name dokode shutoku siterunoka?
+                // intent set
+                skype_intent.setData(uri);
+                // start
+                ctx.startActivity(skype_intent);
+            } catch (ActivityNotFoundException e) {
+                //not install no baai errror rog
+                Log.e("SKYPE CALL", "Skype failed", e); //ToDo nani wo kakeba yoika?
+            }
+
         }
+    }
+
+        // skype ga not install no baai
+    private static boolean isSkypeClientInstalled(Context ctx) {
+        // hensuu sengen
+        PackageManager myPackageMgr = ctx.getPackageManager();
+        try {
+            // skype ga aruka kakunin
+            myPackageMgr.getPackageInfo("com.skype.raider", PackageManager.GET_ACTIVITIES);
+            // nakatta baai false wo kaesu
+        } catch (PackageManager.NameNotFoundException e) {
+            return (false);
+        }
+        // atta baai true wo kaesu
+        return (true);
 
     }
+
+    private static void goToMarket(Context ctx) {
+        // google play no URi shutoku
+        Uri marketUri = Uri.parse("https://play.google.com/store/apps/details?id=com.skype.raider");
+        // intent sakusei
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, marketUri);
+        // new_task de kidou
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(myIntent);
+
+        return;
+    }
+
 
     //menu set
     @Override
