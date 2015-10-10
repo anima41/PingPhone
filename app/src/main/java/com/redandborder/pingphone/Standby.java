@@ -194,8 +194,10 @@ public class Standby extends Activity implements OnClickListener {
         return false;
     }
 
-    /*
-    protected void onRestart() {
+
+    protected void onResume() {
+        super.onResume();
+
         //iro chage
         // button set
         Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
@@ -209,7 +211,7 @@ public class Standby extends Activity implements OnClickListener {
         btn.setBackground(btn_up);
 
     }
-*/
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
