@@ -13,9 +13,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table skype(" + " skype text not null " + ");");
-       // db.execSQL("create table history(" + " history text not null " + ");");
-        db.execSQL("create table password(" + " password int not null " + ");");
+        db.execSQL("create table setting(" + " name text not null, " + " value text not null, " + ");");
+
     }
 
     @Override
