@@ -44,6 +44,7 @@ public class Standby extends Activity implements OnClickListener {
     private Button btn_menu;
 
     private static final String TAG = "Standby";
+    private Button callButton;
 
 
     @Override
@@ -58,8 +59,8 @@ public class Standby extends Activity implements OnClickListener {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // button set
-        Button btn = (Button) findViewById(R.id.skype_button); //ToDO koko ni kaite iinoka
-        btn.setOnClickListener(this);
+        callButton = (Button) findViewById(R.id.skype_button);
+        callButton.setOnClickListener(this);
 
 
         mHandler = new Handler(getMainLooper());
@@ -86,18 +87,16 @@ public class Standby extends Activity implements OnClickListener {
     }
 
     public void onClick(View v) {
-        // button set
-        Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
-        //layout set
+         //layout set
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_down set
         Resources res = getResources();
         btn_down = (Drawable) res.getDrawable(R.drawable.button_down);
 
-        if (v == btn) {
+        if (v == callButton) {
             // btn tap
             layout.setBackgroundColor(Color.DKGRAY);
-            btn.setBackground(btn_down);
+            callButton.setBackground(btn_down);
 
             skypeCall("aq_aqua", this);//ToDo kaeru
 
@@ -199,8 +198,6 @@ public class Standby extends Activity implements OnClickListener {
         super.onResume();
 
         //iro chage
-        // button set
-        Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
         //layout set
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_up set
@@ -208,7 +205,7 @@ public class Standby extends Activity implements OnClickListener {
         btn_up = (Drawable) res.getDrawable(R.drawable.button_up);
 
         layout.setBackgroundColor(Color.WHITE);
-        btn.setBackground(btn_up);
+        callButton.setBackground(btn_up);
 
     }
 

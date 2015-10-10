@@ -34,5 +34,6 @@
 
     <string name="warning_equals">違うパスワードを設定してください</string>
     <string name="pass_change">変更しました</string>
+    <string name="title_activity_debug">Debug</string>
 
 </resources>

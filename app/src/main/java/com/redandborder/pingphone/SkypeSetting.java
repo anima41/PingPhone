@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class SkypeSetting extends ActionBarActivity {
 
-    private static final String TAG = "SkypeSetting";
+    //private static final String TAG = "SkypeSetting";
     private Context mContext;
     private EditText etRecepient;
     private Button btnSet;
@@ -56,16 +56,15 @@ public class SkypeSetting extends ActionBarActivity {
                 String skypeID = sb.toString();
 
                 //sql ni set
-                String sql = "UPDATE skype SET skype = ('"+ skypeID +"') ;";
+
+                String sql = "INSERT OR REPLACE INTO settings (name,value) VALUES ('skypeid','" + skypeID + "');";
                 db.execSQL(sql);
+                db.close();
 
                 //debug
-                Toast toast = Toast.makeText(SkypeSetting.this, sql, Toast.LENGTH_LONG);
-                toast.show();
+                Intent intentDebug = new Intent(SkypeSetting.this, Debug.class);
+                startActivityForResult(intentDebug, 0);
 
-
-                //edittext wo shutoku site call
-                //btnSet(etRecepient.getText().toString(), mContext);
             }
         });
     }
