@@ -38,6 +38,7 @@ public class Standby extends Activity implements OnClickListener {
 
     //button_down set
     protected Drawable btn_down;
+    protected Drawable btn_up;
 
     //menu button
     private Button btn_menu;
@@ -98,9 +99,9 @@ public class Standby extends Activity implements OnClickListener {
             layout.setBackgroundColor(Color.DKGRAY);
             btn.setBackground(btn_down);
 
-            skypeCall("aq_aqua",this);
+            skypeCall("aq_aqua", this);//ToDo kaeru
 
-         }
+        }
     }
 
     // skypeCall no nakami
@@ -121,14 +122,14 @@ public class Standby extends Activity implements OnClickListener {
             ctx.startActivity(skype_intent);
 
 
-        } catch (ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {  //ToDo error no baai kaesu monoha?
             //not install no baai errror rog
             Log.e("SKYPE CALL", "Skype failed", e);
         }
 
     }
 
-        // skype ga not install no baai
+    // skype ga aruka kakunin
     private static boolean isSkypeClientInstalled(Context ctx) {
         // hensuu sengen
         PackageManager myPackageMgr = ctx.getPackageManager();
@@ -159,40 +160,56 @@ public class Standby extends Activity implements OnClickListener {
 
     //menu set
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_setting,menu);
+        inflater.inflate(R.menu.menu_setting, menu);
         return true;
     }
 
     //menu nakami
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-      switch (item.getItemId()){
-          case R.id.menu_skype:
-              Intent intent1 = new Intent(Standby.this, SkypeSetting.class);
-              startActivity(intent1);
-              Standby.this.finish();
-              return true;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_skype:
+                Intent intent1 = new Intent(Standby.this, SkypeSetting.class);
+                startActivity(intent1);
+                Standby.this.finish();
+                return true;
 
-          case R.id.menu_history:
-              Intent intent2 = new Intent(Standby.this, History.class);
-              startActivity(intent2);
-              Standby.this.finish();
-              return true;
+            case R.id.menu_history:
+                Intent intent2 = new Intent(Standby.this, History.class);
+                startActivity(intent2);
+                Standby.this.finish();
+                return true;
 
-          case R.id.menu_passward:
-              Intent intent3 = new Intent(Standby.this, PasswordSetting.class);
-              startActivity(intent3);
-              Standby.this.finish();
-              return true;
+            case R.id.menu_passward:
+                Intent intent3 = new Intent(Standby.this, PasswordSetting.class);
+                startActivity(intent3);
+                Standby.this.finish();
+                return true;
 
-          default:
-              break;
-      }
+            default:
+                break;
+        }
         return false;
     }
 
+    /*
+    protected void onRestart() {
+        //iro chage
+        // button set
+        Button btn = (Button) findViewById(R.id.skype_button); //ToDo muda deha?
+        //layout set
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
+        //button_up set
+        Resources res = getResources();
+        btn_up = (Drawable) res.getDrawable(R.drawable.button_up);
+
+        layout.setBackgroundColor(Color.WHITE);
+        btn.setBackground(btn_up);
+
+    }
+*/
     @Override
     protected void onDestroy() {
         super.onDestroy();
