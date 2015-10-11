@@ -36,6 +36,10 @@
             android:name=".Debug"
             android:label="@string/title_activity_debug" >
         </activity>
+        <activity
+            android:name=".SettingsMenu"
+            android:label="@string/title_activity_settings_menu" >
+        </activity>
     </application>
 
 </manifest>

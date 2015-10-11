@@ -45,6 +45,7 @@ public class Standby extends Activity implements OnClickListener {
 
     private static final String TAG = "Standby";
     private Button callButton;
+    private Button menuSetBtn;
 
 
     @Override
@@ -62,6 +63,8 @@ public class Standby extends Activity implements OnClickListener {
         callButton = (Button) findViewById(R.id.skype_button);
         callButton.setOnClickListener(this);
 
+        menuSetBtn = (Button) findViewById(R.id.settingsMenuButton);
+        menuSetBtn.setOnClickListener(this);
 
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
@@ -100,8 +103,12 @@ public class Standby extends Activity implements OnClickListener {
 
             skypeCall("aq_aqua", this);//ToDo kaeru
 
+        }else if (v == menuSetBtn){
+            Intent intent = new Intent(Standby.this, SettingsMenu.class);
+            startActivity(intent);
         }
-    }
+
+     }
 
     // skypeCall no nakami
     private static void skypeCall(String name, Context ctx) {
@@ -169,14 +176,14 @@ public class Standby extends Activity implements OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_skype:
-                Intent intent1 = new Intent(Standby.this, SkypeSetting.class);
+            case R.id.menu_history:
+                Intent intent1 = new Intent(Standby.this, History.class);
                 startActivity(intent1);
                 Standby.this.finish();
                 return true;
 
-            case R.id.menu_history:
-                Intent intent2 = new Intent(Standby.this, History.class);
+            case R.id.menu_skype:
+                Intent intent2 = new Intent(Standby.this, SkypeSetting.class);
                 startActivity(intent2);
                 Standby.this.finish();
                 return true;
