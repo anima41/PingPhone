@@ -24,27 +24,31 @@ public class Debug extends ActionBarActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         setContentView(layout);
 
+        //query method atai
+        String[] cols = {"value"}; //hoshi atai
+        String selection = "name = ?"; //kensaku suru retu =? ha kimegoto
+        String[] selectionArgs = {"skypeid"}; //? no atai
+        String groupBy = null;
+        String having = null;
+        String orderBy = null;
         MyOpenHelper helper = new MyOpenHelper(this);
         final SQLiteDatabase db = helper.getWritableDatabase();
 
         try {
+            Cursor cursor = db.query(helper.TABLE_NAME_SETTINGS, cols, selection, selectionArgs, groupBy, having, orderBy);
 
-            Cursor c = db.query(helper.TABLE_NAME_SETTINGS, new String[]{"name", "value"}, null,
-                    null, null, null, null);
-
-            boolean mov = c.moveToFirst();
-            while (mov) {
+            while (cursor.moveToNext()) {
                 TextView textView = new TextView(this);
-                textView.setText(String.format("%s : %s", c.getString(0), c.getString(1)));
-                mov = c.moveToNext();
+                textView.setText(cursor.getString(0) );
                 layout.addView(textView);
             }
-
-            c.close();
-            db.close();
+            cursor.close();
         }catch (Exception e){
-            Log.e(this.getClass().getName(), e.getMessage());
+                Log.e(this.getClass().getName(), e.getMessage());
+        }finally{
+            db.close();
         }
+
 
         final Button button = new Button(this);
         button.setText("OK");
@@ -58,9 +62,6 @@ public class Debug extends ActionBarActivity {
                 }
             }
         });
-
-
-
     }
 
 }
