@@ -1,5 +1,6 @@
 package com.redandborder.pingphone;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.redandborder.pingphone.model.Settings;
+
 
 public class Debug extends ActionBarActivity {
 
@@ -24,30 +27,11 @@ public class Debug extends ActionBarActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         setContentView(layout);
 
-        //query method atai
-        String[] cols = {"value"}; //hoshi atai
-        String selection = "name = ?"; //kensaku suru retu =? ha kimegoto
-        String[] selectionArgs = {"skypeid"}; //? no atai
-        String groupBy = null;
-        String having = null;
-        String orderBy = null;
-        MyOpenHelper helper = new MyOpenHelper(this);
-        final SQLiteDatabase db = helper.getWritableDatabase();
-
-        try {
-            Cursor cursor = db.query(helper.TABLE_NAME_SETTINGS, cols, selection, selectionArgs, groupBy, having, orderBy);
-
-            while (cursor.moveToNext()) {
-                TextView textView = new TextView(this);
-                textView.setText(cursor.getString(0) );
-                layout.addView(textView);
-            }
-            cursor.close();
-        }catch (Exception e){
-                Log.e(this.getClass().getName(), e.getMessage());
-        }finally{
-            db.close();
-        }
+        Settings settings = new Settings();
+        String skypeid = settings.getSkypeId(this);
+        TextView textView = new TextView(this);
+        textView.setText(skypeid);
+        layout.addView(textView);
 
 
         final Button button = new Button(this);
@@ -63,5 +47,4 @@ public class Debug extends ActionBarActivity {
             }
         });
     }
-
 }
