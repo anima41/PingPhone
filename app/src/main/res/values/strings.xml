@@ -3,4 +3,38 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_screen_select">ScreenSelect</string>
+
+    <string name="title">ping\nphone</string>
+
+    <string name="standby_info">おつなぎします</string>
+    <string name="watch">yyyy/mm/dd hh:mm</string>
+    <string name="config_button">設定</string>
+
+    <string name="skype_setting">Skype名の設定</string>
+    <string name="skype_setting_info">社内側のSkype名を入力してください</string>
+    <string name="id_text">Skype名</string>
+    <string name="id_set">登録</string>
+    <string name="title_activity_skype_setting">SkypeSetting</string>
+
+    <string name="skype_button">押</string>
+    <string name="title_activity_standby">Standby</string>
+
+    <string name="menu_skype">スカイプ名の設定</string>
+    <string name="menu_history">履歴</string>
+    <string name="menu_password">パスワード変更</string>
+    <string name="title_activity_password_setting">PasswordSetting</string>
+
+    <string name="password_setting">パスワードの設定</string>
+    <string name="password_setting_info">新しいパスワードを設定してください</string>
+    <string name="pass_before">前のパスワード</string>
+    <string name="pass_after">新しいパスワード</string>
+    <string name="pass_set">登録</string>
+    <string name="title_activity_history">History</string>
+
+    <string name="warning_equals">違うパスワードを設定してください</string>
+    <string name="pass_change">変更しました</string>
+    <string name="title_activity_debug">Debug</string>
+    <string name="title_activity_settings_menu">SettingsMenu</string>
+
 </resources>

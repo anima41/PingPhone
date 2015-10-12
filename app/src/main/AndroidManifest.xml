@@ -16,6 +16,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SkypeSetting"
+            android:label="@string/title_activity_skype_setting" >
+        </activity>
+        <activity
+            android:name=".Standby"
+            android:label="@string/title_activity_standby" >
+        </activity>
+        <activity
+            android:name=".PasswordSetting"
+            android:label="@string/title_activity_password_setting" >
+        </activity>
+        <activity
+            android:name=".History"
+            android:label="@string/title_activity_history" >
+        </activity>
+        <activity
+            android:name=".Debug"
+            android:label="@string/title_activity_debug" >
+        </activity>
+        <activity
+            android:name=".SettingsMenu"
+            android:label="@string/title_activity_settings_menu" >
+        </activity>
     </application>
 
 </manifest>
