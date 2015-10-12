@@ -23,6 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
+import com.redandborder.pingphone.model.Settings;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
@@ -101,7 +103,10 @@ public class Standby extends Activity implements OnClickListener {
             layout.setBackgroundColor(Color.DKGRAY);
             callButton.setBackground(btn_down);
 
-            skypeCall("aq_aqua", this);//ToDo kaeru
+            Settings settings = new Settings();
+            String idText = settings.getSkypeId(this);
+
+            skypeCall(idText, this);
 
         }else if (v == menuSetBtn){
             Intent intent = new Intent(Standby.this, SettingsMenu.class);
@@ -162,44 +167,6 @@ public class Standby extends Activity implements OnClickListener {
 
         return;
     }
-
-
-    //menu set
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_setting, menu);
-        return true;
-    }
-
-    //menu nakami
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_history:
-                Intent intent1 = new Intent(Standby.this, History.class);
-                startActivity(intent1);
-                Standby.this.finish();
-                return true;
-
-            case R.id.menu_skype:
-                Intent intent2 = new Intent(Standby.this, SkypeSetting.class);
-                startActivity(intent2);
-                Standby.this.finish();
-                return true;
-
-            case R.id.menu_passward:
-                Intent intent3 = new Intent(Standby.this, PasswordSetting.class);
-                startActivity(intent3);
-                Standby.this.finish();
-                return true;
-
-            default:
-                break;
-        }
-        return false;
-    }
-
 
     protected void onResume() {
         super.onResume();

@@ -11,12 +11,12 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     private static final String DROP_TABLE = "drop table " + TABLE_NAME_SETTINGS + ";";
 
     public MyOpenHelper(Context context) {
-        super(context, "item", null, 2);
+        super(context, "item", null, 3);
       }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+ TABLE_NAME_SETTINGS +"(" + " name text not null, " + " value text not null " + ");");
+        db.execSQL("create table "+ TABLE_NAME_SETTINGS +"(" + " name text primary key, " + " value text not null " + ");");
 
     }
 

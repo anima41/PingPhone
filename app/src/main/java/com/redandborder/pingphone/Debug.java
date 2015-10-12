@@ -1,5 +1,6 @@
 package com.redandborder.pingphone;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.redandborder.pingphone.model.Settings;
+
 
 public class Debug extends ActionBarActivity {
 
@@ -24,27 +27,12 @@ public class Debug extends ActionBarActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         setContentView(layout);
 
-        MyOpenHelper helper = new MyOpenHelper(this);
-        final SQLiteDatabase db = helper.getWritableDatabase();
+        Settings settings = new Settings();
+        String skypeid = settings.getSkypeId(this);
+        TextView textView = new TextView(this);
+        textView.setText(skypeid);
+        layout.addView(textView);
 
-        try {
-
-            Cursor c = db.query(helper.TABLE_NAME_SETTINGS, new String[]{"name", "value"}, null,
-                    null, null, null, null);
-
-            boolean mov = c.moveToFirst();
-            while (mov) {
-                TextView textView = new TextView(this);
-                textView.setText(String.format("%s : %s", c.getString(0), c.getString(1)));
-                mov = c.moveToNext();
-                layout.addView(textView);
-            }
-
-            c.close();
-            db.close();
-        }catch (Exception e){
-            Log.e(this.getClass().getName(), e.getMessage());
-        }
 
         final Button button = new Button(this);
         button.setText("OK");
@@ -58,9 +46,5 @@ public class Debug extends ActionBarActivity {
                 }
             }
         });
-
-
-
     }
-
 }
