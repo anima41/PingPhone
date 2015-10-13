@@ -104,6 +104,7 @@ public class Standby extends Activity implements OnClickListener {
             layout.setBackgroundColor(Color.DKGRAY);
             callButton.setBackground(btn_down);
 
+            //skype call
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
@@ -119,11 +120,21 @@ public class Standby extends Activity implements OnClickListener {
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            //ToDo pass match
-                            /*Toast.makeText(Standby.this,
-                                    editView.getText().toString(),
-                                    Toast.LENGTH_LONG).show();
-                             */
+                            Settings settings = new Settings();
+                            String pass = settings.getPass(Standby.this);
+
+                            String inputPass = editView.getText().toString();
+
+                            if(pass.equals(inputPass)) {
+                                //ToDo pass match
+                                Toast.makeText(Standby.this,
+                                        "yes",
+                                        Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(Standby.this,
+                                        "no",
+                                        Toast.LENGTH_LONG).show();
+                            }
                         }
                     })
                     .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
@@ -157,12 +168,13 @@ public class Standby extends Activity implements OnClickListener {
 
 
         } catch (ActivityNotFoundException e) {  //ToDo error no baai kaesu monoha?
-            //not install no baai errror rog
+            //not install no baai error rog
             Log.e("SKYPE CALL", "Skype failed", e);
         }
 
     }
 
+    // pass no matching
     private static void matchPass(String pass, Context ctx){
         //getPass
         Settings settings = new Settings();
