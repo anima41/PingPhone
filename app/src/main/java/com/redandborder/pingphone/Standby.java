@@ -174,17 +174,6 @@ public class Standby extends Activity implements OnClickListener {
 
     }
 
-    // pass no matching
-    private static void matchPass(String pass, Context ctx){
-        //getPass
-        Settings settings = new Settings();
-        String passText = settings.getPass(ctx);
-
-        //editText wo tottekuru
-
-
-    }
-
     // skype ga aruka kakunin
     private static boolean isSkypeClientInstalled(Context ctx) {
         // hensuu sengen
