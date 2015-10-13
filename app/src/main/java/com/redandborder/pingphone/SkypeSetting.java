@@ -56,7 +56,6 @@ public class SkypeSetting extends ActionBarActivity {
                 String skypeID = sb.toString();
 
                 //sql ni set
-
                 String sql = "INSERT OR REPLACE INTO settings (name,value) VALUES ('skypeid','" + skypeID + "');";
                 db.execSQL(sql);
                 db.close();
@@ -67,13 +66,6 @@ public class SkypeSetting extends ActionBarActivity {
 
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // tukattenai
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     private static void goToMarket(Context ctx) {
