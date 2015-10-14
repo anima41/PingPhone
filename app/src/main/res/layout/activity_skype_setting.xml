@@ -23,13 +23,12 @@
 
     <EditText
         android:id="@+id/id_text"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:gravity="bottom"
         android:layout_marginTop="50dp"
-        android:textSize="30dp"
-        android:text="@string/id_text"/>
+        android:textSize="30dp"/>
 
     <Button
         android:id="@+id/skype_set"

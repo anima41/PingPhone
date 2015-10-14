@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.redandborder.pingphone.model.Settings;
+
 
 public class SkypeSetting extends ActionBarActivity {
+    //hensu shokika
+    private Handler hdl = null;
+    private SplashHandler r = null;
 
     //private static final String TAG = "SkypeSetting";
     private Context mContext;
@@ -43,7 +50,6 @@ public class SkypeSetting extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-
                 //sql sengen
                 MyOpenHelper helper = new MyOpenHelper(SkypeSetting.this);
                 final SQLiteDatabase db = helper.getWritableDatabase();
@@ -55,15 +61,24 @@ public class SkypeSetting extends ActionBarActivity {
                 SpannableStringBuilder sb = (SpannableStringBuilder)et.getText();
                 String skypeID = sb.toString();
 
-                //sql ni set
-                String sql = "INSERT OR REPLACE INTO settings (name,value) VALUES ('skypeid','" + skypeID + "');";
-                db.execSQL(sql);
-                db.close();
+                if (TextUtils.isEmpty(skypeID) || skypeID.length()==0){
+                    //text nashi no baai
+                    Toast.makeText(SkypeSetting.this, "スカイプ名を設定してください", Toast.LENGTH_LONG).show();
+                }else {
+                    //text ok
+                    //sql ni set
+                    String sql = "INSERT OR REPLACE INTO settings (name,value) VALUES ('skypeid','" + skypeID + "');";
+                    db.execSQL(sql);
+                    db.close();
 
-                //debug
-                Intent intentDebug = new Intent(SkypeSetting.this, Debug.class);
-                startActivityForResult(intentDebug, 0);
+                    Toast.makeText(SkypeSetting.this, "登録しました", Toast.LENGTH_LONG).show();
 
+                    //instans
+                    hdl = new Handler();
+                    r = new SplashHandler();
+                    //2hikisu de sitei
+                    hdl.postDelayed(r, 2000);
+                }
             }
         });
     }
@@ -118,4 +133,12 @@ public class SkypeSetting extends ActionBarActivity {
 
     }
 
+    // SplashHandler
+    class SplashHandler implements Runnable {
+        public void run() {
+            Intent intent = new Intent(SkypeSetting.this, Standby.class);
+            startActivity(intent);
+            SkypeSetting.this.finish();
+        }
+    }
 }
