@@ -1,7 +1,9 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -68,6 +70,9 @@ public class Standby extends Activity implements OnClickListener {
         menuSetBtn = (Button) findViewById(R.id.settingsMenuButton);
         menuSetBtn.setOnClickListener(this);
 
+        ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
+        String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
 
@@ -109,6 +114,10 @@ public class Standby extends Activity implements OnClickListener {
             String idText = settings.getSkypeId(this);
 
             skypeCall(idText, this);
+
+            //startService
+            Intent intent = new Intent(Standby.this, TryService.class);
+            startService(intent);
 
         }else if (v == menuSetBtn){
             final EditText editView = new EditText(Standby.this);
