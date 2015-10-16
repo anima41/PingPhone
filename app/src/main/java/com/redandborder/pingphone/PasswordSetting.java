@@ -1,9 +1,12 @@
 package com.redandborder.pingphone;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,8 +15,13 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.redandborder.pingphone.model.Settings;
+
 
 public class PasswordSetting extends ActionBarActivity implements OnClickListener{
+    //hensu shokika
+    private Handler hdl = null;
+    private SplashHandler r = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +61,38 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
             //sql ni set
             MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
             final SQLiteDatabase db = helper.getWritableDatabase();
-            String sql = "UPDATE password SET password = ('"+ t_after +"') ;";
+            String sql = "INSERT OR REPLACE INTO " + helper.TABLE_NAME_SETTINGS +" (name,value) VALUES ('password','" + t_after + "');";
             db.execSQL(sql);
 
             //toast
             String change = getResources().getString(R.string.pass_change);
             Toast toast_c = Toast.makeText(PasswordSetting.this, change, Toast.LENGTH_LONG);
             toast_c.show();
-        }
 
+            //instans
+            hdl = new Handler();
+            r = new SplashHandler();
+            //2hikisu de sitei
+            hdl.postDelayed(r, 3000);
+
+        }
 
     }
 
+    // SplashHandler
+    class SplashHandler implements Runnable {
+        public void run() {
+            Settings settings = new Settings();
+            String skypeId = settings.getSkypeId(PasswordSetting.this);
+            Intent intent = null;
+
+            if (TextUtils.isEmpty(skypeId)) {
+                intent = new Intent(PasswordSetting.this, SkypeSetting.class);
+            }else {
+                intent = new Intent(PasswordSetting.this, Standby.class);
+            }
+            startActivity(intent);
+            PasswordSetting.this.finish();
+        }
+    }
 }

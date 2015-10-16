@@ -1,8 +1,10 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -19,9 +21,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
 
@@ -42,13 +46,9 @@ public class Standby extends Activity implements OnClickListener {
     protected Drawable btn_down;
     protected Drawable btn_up;
 
-    //menu button
-    private Button btn_menu;
-
     private static final String TAG = "Standby";
     private Button callButton;
     private Button menuSetBtn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class Standby extends Activity implements OnClickListener {
         // taskbar nashi
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // button set
+        // button set //ToDo choufuku siteru
         callButton = (Button) findViewById(R.id.skype_button);
         callButton.setOnClickListener(this);
 
@@ -98,19 +98,53 @@ public class Standby extends Activity implements OnClickListener {
         Resources res = getResources();
         btn_down = (Drawable) res.getDrawable(R.drawable.button_down);
 
+
         if (v == callButton) {
             // btn tap
             layout.setBackgroundColor(Color.DKGRAY);
             callButton.setBackground(btn_down);
 
+            //skype call
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
             skypeCall(idText, this);
 
         }else if (v == menuSetBtn){
-            Intent intent = new Intent(Standby.this, SettingsMenu.class);
-            startActivity(intent);
+            final EditText editView = new EditText(Standby.this);
+            //Dialog
+            new AlertDialog.Builder(Standby.this)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setTitle("パスワードを入力してください")
+                    .setView(editView)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            Settings settings = new Settings();
+                            String pass = settings.getPass(Standby.this);
+
+                            String inputPass = editView.getText().toString();
+
+                            if(pass.equals(inputPass)) {
+                                //ToDo pass match
+                                Toast.makeText(Standby.this,
+                                        "yes",
+                                        Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(Standby.this,
+                                        "no",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    })
+                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                    })
+                    .show();
+
+            //Intent intent = new Intent(Standby.this, SettingsMenu.class);
+            //startActivity(intent);
         }
 
      }
@@ -134,7 +168,7 @@ public class Standby extends Activity implements OnClickListener {
 
 
         } catch (ActivityNotFoundException e) {  //ToDo error no baai kaesu monoha?
-            //not install no baai errror rog
+            //not install no baai error rog
             Log.e("SKYPE CALL", "Skype failed", e);
         }
 
@@ -167,6 +201,8 @@ public class Standby extends Activity implements OnClickListener {
 
         return;
     }
+
+
 
     protected void onResume() {
         super.onResume();
