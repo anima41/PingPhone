@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
@@ -32,10 +33,16 @@ public class SkypeSetting extends ActionBarActivity {
     private EditText etRecepient;
     private Button btnSet;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skype_setting);
+
+        TextView tvDefault = (TextView) findViewById(R.id.skype_default);
+        String default_text = new Settings().getSkypeId(this);
+        tvDefault.setText(default_text);
 
         //initialize jikkou
         initialize();
@@ -50,9 +57,7 @@ public class SkypeSetting extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                //sql sengen
-                MyOpenHelper helper = new MyOpenHelper(SkypeSetting.this);
-                final SQLiteDatabase db = helper.getWritableDatabase();
+
 
                 //editText sengen
                 EditText et = (EditText)findViewById(R.id.id_text);
@@ -66,6 +71,9 @@ public class SkypeSetting extends ActionBarActivity {
                     Toast.makeText(SkypeSetting.this, "スカイプ名を設定してください", Toast.LENGTH_LONG).show();
                 }else {
                     //text ok
+                    //sql sengen
+                    MyOpenHelper helper = new MyOpenHelper(SkypeSetting.this);
+                    final SQLiteDatabase db = helper.getWritableDatabase();
                     //sql ni set
                     String sql = "INSERT OR REPLACE INTO settings (name,value) VALUES ('skypeid','" + skypeID + "');";
                     db.execSQL(sql);
