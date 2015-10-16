@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
 
+import java.util.regex.Pattern;
+
 
 public class PasswordSetting extends ActionBarActivity implements OnClickListener{
     //hensu shokika
@@ -50,19 +52,20 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         String t_before = sb1.toString();
         String t_after = sb2.toString();
 
-        if (t_before.equals(t_after)){
-            //warning
+        if (t_before.equals(t_after)) {
+            //equals datta baai NG
             String warning = getResources().getString(R.string.warning_equals);
             Toast toast_w = Toast.makeText(PasswordSetting.this, warning, Toast.LENGTH_LONG);
             toast_w.show();
-        }else{
-            //change
 
-            //sql ni set
+        }else{
+            //ok
             MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
             final SQLiteDatabase db = helper.getWritableDatabase();
+
             String sql = "INSERT OR REPLACE INTO " + helper.TABLE_NAME_SETTINGS +" (name,value) VALUES ('password','" + t_after + "');";
             db.execSQL(sql);
+            db.close();
 
             //toast
             String change = getResources().getString(R.string.pass_change);
@@ -74,7 +77,6 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
             r = new SplashHandler();
             //2hikisu de sitei
             hdl.postDelayed(r, 3000);
-
         }
 
     }
@@ -87,8 +89,10 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
             Intent intent = null;
 
             if (TextUtils.isEmpty(skypeId)) {
+                //skypeID null datta baai
                 intent = new Intent(PasswordSetting.this, SkypeSetting.class);
             }else {
+                //skypeID areba
                 intent = new Intent(PasswordSetting.this, Standby.class);
             }
             startActivity(intent);
