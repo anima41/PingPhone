@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -50,6 +51,8 @@ public class Standby extends Activity implements OnClickListener {
     private Button callButton;
     private Button menuSetBtn;
 
+    final EditText editView = new EditText(Standby.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,8 @@ public class Standby extends Activity implements OnClickListener {
 
         menuSetBtn = (Button) findViewById(R.id.settingsMenuButton);
         menuSetBtn.setOnClickListener(this);
+
+        editView.setOnFocusChangeListener(this);
 
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
@@ -111,7 +116,7 @@ public class Standby extends Activity implements OnClickListener {
             skypeCall(idText, this);
 
         }else if (v == menuSetBtn){
-            final EditText editView = new EditText(Standby.this);
+
             //Dialog
             new AlertDialog.Builder(Standby.this)
                     .setIcon(android.R.drawable.ic_dialog_info)
@@ -197,6 +202,16 @@ public class Standby extends Activity implements OnClickListener {
         ctx.startActivity(myIntent);
 
         return;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        // on focus
+        if (hasFocus) {
+            // keyboard show
+            inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_FORCED);
+        }
     }
 
 
