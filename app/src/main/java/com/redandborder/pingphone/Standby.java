@@ -126,13 +126,13 @@ public class Standby extends Activity implements OnClickListener {
                             String inputPass = editView.getText().toString();
 
                             if(pass.equals(inputPass)) {
-                                //ToDo pass match
-                                Toast.makeText(Standby.this,
-                                        "yes",
-                                        Toast.LENGTH_LONG).show();
+                                //match yes
+                                Intent intent = new Intent(Standby.this, SettingsMenu.class);
+                                startActivity(intent);
                             }else {
+                                //match no
                                 Toast.makeText(Standby.this,
-                                        "no",
+                                        "パスワードが違います",
                                         Toast.LENGTH_LONG).show();
                             }
                         }
@@ -142,9 +142,6 @@ public class Standby extends Activity implements OnClickListener {
                         }
                     })
                     .show();
-
-            //Intent intent = new Intent(Standby.this, SettingsMenu.class);
-            //startActivity(intent);
         }
 
      }
