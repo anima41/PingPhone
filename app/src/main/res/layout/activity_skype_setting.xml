@@ -5,6 +5,8 @@
               android:orientation="vertical"
               tools:context="com.redandborder.pingphone.SkypeSetting">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +22,22 @@
         android:layout_marginTop="50dp"
         android:textSize="20sp"
         android:text="@string/skype_setting_info"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:text="@string/skype_setting_default"/>
+
+    <TextView
+        android:id="@+id/skype_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/id_text"

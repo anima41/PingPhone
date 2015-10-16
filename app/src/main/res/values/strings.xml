@@ -12,7 +12,8 @@
     <string name="config_button">設定</string>
 
     <string name="skype_setting">Skype名の設定</string>
-    <string name="skype_setting_info">社内側のSkype名を入力してください</string>
+    <string name="skype_setting_info">通話先のSkype名を入力してください</string>
+    <string name="skype_setting_default">現在の通話先</string>
     <string name="id_text">Skype名</string>
     <string name="id_set">登録</string>
     <string name="title_activity_skype_setting">SkypeSetting</string>
