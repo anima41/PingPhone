@@ -1,7 +1,9 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,6 +72,13 @@ public class Standby extends Activity implements OnClickListener {
 
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
+
+        // debug Activity wo shutoku
+        ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
+        String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+
+        Toast.makeText(Standby.this, className, Toast.LENGTH_LONG).show();
+
 
         //1s gotoni run
         mTimer.schedule(new TimerTask() {

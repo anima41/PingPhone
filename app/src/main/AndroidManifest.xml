@@ -41,5 +41,6 @@
             android:label="@string/title_activity_settings_menu" >
         </activity>
     </application>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
 </manifest>
