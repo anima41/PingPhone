@@ -76,7 +76,7 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
             hdl = new Handler();
             r = new SplashHandler();
             //2hikisu de sitei
-            hdl.postDelayed(r, 3000);
+            hdl.postDelayed(r, 2000);
         }
 
     }
