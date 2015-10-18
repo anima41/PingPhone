@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -118,18 +119,18 @@ public class Standby extends Activity implements OnClickListener {
                     .setTitle("パスワードを入力してください")
                     .setView(editView)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
+                        @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
                             Settings settings = new Settings();
                             String pass = settings.getPass(Standby.this);
 
                             String inputPass = editView.getText().toString();
 
-                            if(pass.equals(inputPass)) {
+                            if (pass.equals(inputPass)) {
                                 //match yes
                                 Intent intent = new Intent(Standby.this, SettingsMenu.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
                                 //match no
                                 Toast.makeText(Standby.this,
                                         "パスワードが違います",
@@ -137,11 +138,19 @@ public class Standby extends Activity implements OnClickListener {
                             }
                         }
                     })
-                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                    .setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
                         }
                     })
-                    .show();
+                    .setNegativeButton("お忘れの方", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage("###########",null,"パスワードは1111です",null,null);
+                        }
+                    })
+                            .show();
         }
 
      }
