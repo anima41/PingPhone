@@ -40,6 +40,10 @@
             android:name=".SettingsMenu"
             android:label="@string/title_activity_settings_menu" >
         </activity>
+        <activity
+            android:name=".TelSetting"
+            android:label="@string/title_activity_tel_setting" >
+        </activity>
     </application>
 
 </manifest>
