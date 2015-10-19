@@ -234,6 +234,8 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
+        Intent intent = new Intent(Standby.this, com.redandborder.pingphone.TryService.class);
+        stopService(intent);
     }
 
 }

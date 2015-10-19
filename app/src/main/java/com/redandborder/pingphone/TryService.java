@@ -97,7 +97,7 @@ public class TryService extends Service {
         this.mThread.start();
 
         // tuuchi bar
-        showNotification(this);
+        //showNotification(this);
 
         // START_NOT_STICKY,START_REDELIVER_INTENT,START_STICKY_COMPATIBILITY
         return START_STICKY;
@@ -120,10 +120,11 @@ public class TryService extends Service {
         this.mThread.interrupt();
         this.mThreadActive = false;
 
-        this.stopNotification(this);
+        //this.stopNotification(this);
         super.onDestroy();
     }
 
+    /*
     // ______________________________________________________________________________
     // no tuuchi bar
     private void stopNotification(final Context ctx) {
@@ -154,7 +155,7 @@ public class TryService extends Service {
        // mgr.notify(R.layout.activity_service, n);
 
     }
-
+*/
 
 }
 

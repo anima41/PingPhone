@@ -41,6 +41,7 @@
             android:name=".SettingsMenu"
             android:label="@string/title_activity_settings_menu" >
         </activity>
+        <service android:name="TryService"></service>
     </application>
 
 </manifest>
