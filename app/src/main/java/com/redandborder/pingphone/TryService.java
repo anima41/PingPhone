@@ -1,5 +1,6 @@
 package com.redandborder.pingphone;
 
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -20,11 +21,13 @@ public class TryService extends Service {
     // Toast count
     private int mCount = 0;
 
-    // Toast hyouji
     private Handler mHandler = new Handler();
 
     // slead atop
     private boolean mThreadActive = true;
+
+    ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
+    String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
 
     private Runnable mTask = new Runnable() {
 
@@ -44,8 +47,9 @@ public class TryService extends Service {
 
                     @Override
                     public void run() {
-                        mCount++;
-                        showText("カウント:" + mCount);
+                        //mCount++;
+                        //showText("カウント:" + mCount);
+                        showText(className);
                     }
                 });
             }
@@ -96,9 +100,6 @@ public class TryService extends Service {
         this.mThread = new Thread(null, mTask, "NortifyingService");
         this.mThread.start();
 
-        // tuuchi bar
-        //showNotification(this);
-
         // START_NOT_STICKY,START_REDELIVER_INTENT,START_STICKY_COMPATIBILITY
         return START_STICKY;
     }
@@ -123,39 +124,5 @@ public class TryService extends Service {
         //this.stopNotification(this);
         super.onDestroy();
     }
-
-    /*
-    // ______________________________________________________________________________
-    // no tuuchi bar
-    private void stopNotification(final Context ctx) {
-        NotificationManager mgr = (NotificationManager)ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-       // mgr.cancel(R.layout.activity_service);
-    }
-
-    // ______________________________________________________________________________
-    // on tuuchi bar
-    private void showNotification(final Context ctx) {
-
-        NotificationManager mgr = (NotificationManager)ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Intent intent = new Intent(ctx, Standby.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        // tuuchi bar no naiyou
-        Notification n = new NotificationCompat.Builder(ctx)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setTicker("サービスが起動しました")
-                .setWhen(System.currentTimeMillis())    // time
-                .setContentTitle("サービス起動中")
-                .setContentText("このバーをタップ後に「サービス終了」を選択してください")
-                .setContentIntent(contentIntent)// intext
-                .build();
-        n.flags = Notification.FLAG_NO_CLEAR;
-
-       // mgr.notify(R.layout.activity_service, n);
-
-    }
-*/
-
 }
 

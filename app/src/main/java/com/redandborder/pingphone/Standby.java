@@ -17,16 +17,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
@@ -52,6 +49,9 @@ public class Standby extends Activity implements OnClickListener {
     private Button callButton;
     private Button menuSetBtn;
 
+    //ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
+    //String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +69,6 @@ public class Standby extends Activity implements OnClickListener {
 
         menuSetBtn = (Button) findViewById(R.id.settingsMenuButton);
         menuSetBtn.setOnClickListener(this);
-
-        ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
-        String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
 
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
