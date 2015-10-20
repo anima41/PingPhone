@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -89,6 +90,16 @@ public class Standby extends Activity implements OnClickListener {
                 });
             }
         }, 0, 1000);
+    }
+
+    //pass nashi no baai
+    Settings settings = new Settings();
+    String pass = settings.getPass(Standby.this);
+    Intent intent = null;
+
+    if (TextUtils.isEmpty(pass)) {
+        intent = new Intent(Standby.this, PasswordSetting.class);
+        startActivity(intent);
     }
 
     public void onClick(View v) {

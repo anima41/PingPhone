@@ -7,12 +7,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
@@ -54,8 +56,20 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
 
         if (t_before.equals(t_after)) {
             //equals datta baai NG
+
+           // Toast toast_w = Toast.makeText(PasswordSetting.this, warning, Toast.LENGTH_LONG);
+
+            // inflater
+            LayoutInflater inflater = getLayoutInflater();
+            // xml
+            View layout = inflater.inflate(R.layout.toast_layout, null);
+
+            TextView text = (TextView)layout.findViewById(R.id.toastText);
             String warning = getResources().getString(R.string.warning_equals);
-            Toast toast_w = Toast.makeText(PasswordSetting.this, warning, Toast.LENGTH_LONG);
+            text.setText(warning);
+
+            Toast toast_w = new Toast(this);
+            toast_w.setView(layout);
             toast_w.show();
 
         }else{
