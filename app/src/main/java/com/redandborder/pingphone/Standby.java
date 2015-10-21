@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -89,10 +91,20 @@ public class Standby extends Activity implements OnClickListener {
                 });
             }
         }, 0, 1000);
+
+        //pass nashi no baai
+        Settings settings = new Settings();
+        String pass = settings.getPass(Standby.this);
+        Intent intent = null;
+
+        if (TextUtils.isEmpty(pass)) {
+            intent = new Intent(Standby.this, PasswordSetting.class);
+            startActivity(intent);
+        }
     }
 
     public void onClick(View v) {
-         //layout set
+        //layout set
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_down set
         Resources res = getResources();
@@ -110,7 +122,7 @@ public class Standby extends Activity implements OnClickListener {
 
             skypeCall(idText, this);
 
-        }else if (v == menuSetBtn){
+        } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
             //Dialog
             new AlertDialog.Builder(Standby.this)
@@ -125,15 +137,14 @@ public class Standby extends Activity implements OnClickListener {
 
                             String inputPass = editView.getText().toString();
 
-                            if(pass.equals(inputPass)) {
+                            if (pass.equals(inputPass)) {
                                 //match yes
                                 Intent intent = new Intent(Standby.this, SettingsMenu.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
                                 //match no
-                                Toast.makeText(Standby.this,
-                                        "パスワードが違います",
-                                        Toast.LENGTH_LONG).show();
+                                ToastUtil toastUtil = new ToastUtil();
+                                toastUtil.show(Standby.this, "パスワードが違います");
                             }
                         }
                     })
@@ -144,7 +155,7 @@ public class Standby extends Activity implements OnClickListener {
                     .show();
         }
 
-     }
+    }
 
     // skypeCall no nakami
     private static void skypeCall(String name, Context ctx) {
@@ -198,7 +209,6 @@ public class Standby extends Activity implements OnClickListener {
 
         return;
     }
-
 
 
     protected void onResume() {
