@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.ToastUtil;
 
 
 public class SkypeSetting extends ActionBarActivity {
@@ -32,7 +33,6 @@ public class SkypeSetting extends ActionBarActivity {
     private Context mContext;
     private EditText etRecepient;
     private Button btnSet;
-
 
 
     @Override
@@ -60,16 +60,18 @@ public class SkypeSetting extends ActionBarActivity {
 
 
                 //editText sengen
-                EditText et = (EditText)findViewById(R.id.id_text);
+                EditText et = (EditText) findViewById(R.id.id_text);
 
                 //moji wo toru
-                SpannableStringBuilder sb = (SpannableStringBuilder)et.getText();
+                SpannableStringBuilder sb = (SpannableStringBuilder) et.getText();
                 String skypeID = sb.toString();
 
-                if (TextUtils.isEmpty(skypeID) || skypeID.length()==0){
+                if (TextUtils.isEmpty(skypeID) || skypeID.length() == 0) {
                     //text nashi no baai
-                    Toast.makeText(SkypeSetting.this, "スカイプ名を設定してください", Toast.LENGTH_LONG).show();
-                }else {
+                    ToastUtil toastUtil = new ToastUtil();
+                    toastUtil.show(SkypeSetting.this, "スカイプ名を設定してください");
+
+                } else {
                     //text ok
                     //sql sengen
                     MyOpenHelper helper = new MyOpenHelper(SkypeSetting.this);
@@ -79,7 +81,8 @@ public class SkypeSetting extends ActionBarActivity {
                     db.execSQL(sql);
                     db.close();
 
-                    Toast.makeText(SkypeSetting.this, "登録しました", Toast.LENGTH_LONG).show();
+                    ToastUtil toastUtil = new ToastUtil();
+                    toastUtil.show(SkypeSetting.this, "登録しました");
 
                     //instans
                     hdl = new Handler();
@@ -118,6 +121,7 @@ public class SkypeSetting extends ActionBarActivity {
         return (true);
 
     }
+
     // skypeCall no nakami
     private static void btnSet(String name, Context ctx) {
         try {
