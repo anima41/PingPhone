@@ -10,7 +10,9 @@ import android.widget.Toast;
 import com.redandborder.pingphone.R;
 
 public class ToastUtil {
-    public void show(Activity act,String toastText) {
+    private int duration = Toast.LENGTH_LONG;
+
+    public void show(Activity act, String toastText) {
         // inflater
         LayoutInflater inflater = act.getLayoutInflater();
         // xml
@@ -20,6 +22,12 @@ public class ToastUtil {
         tv.setText(toastText);
         Toast tst = new Toast(act);
         tst.setView(layout);
+        tst.setDuration(duration);
         tst.show();
+    }
+
+    public void show(Activity act, String toastText,int duration) {
+        this.duration = duration;
+        show(act,toastText);
     }
 }
