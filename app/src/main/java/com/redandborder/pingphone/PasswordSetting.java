@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.ToastUtil;
 
 import java.util.regex.Pattern;
 
@@ -35,7 +36,6 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         // button set
         Button btn = (Button) findViewById(R.id.pass_set_button); //ToDo hituyouka
         btn.setOnClickListener(this);
-
     }
 
     public void onClick(View view){
@@ -56,21 +56,10 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
 
         if (t_before.equals(t_after)) {
             //equals datta baai NG
-
-           // Toast toast_w = Toast.makeText(PasswordSetting.this, warning, Toast.LENGTH_LONG);
-
-            // inflater
-            LayoutInflater inflater = getLayoutInflater();
-            // xml
-            View layout = inflater.inflate(R.layout.toast_layout, null);
-
-            TextView text = (TextView)layout.findViewById(R.id.toastText);
             String warning = getResources().getString(R.string.warning_equals);
-            text.setText(warning);
+            ToastUtil toastUtil = new ToastUtil();
+            toastUtil.toastLayout(warning);
 
-            Toast toast_w = new Toast(this);
-            toast_w.setView(layout);
-            toast_w.show();
 
         }else{
             //ok
@@ -94,6 +83,8 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         }
 
     }
+
+
 
     // SplashHandler
     class SplashHandler implements Runnable {
