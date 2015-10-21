@@ -14,10 +14,11 @@ public class ToastUtil extends Activity{
         LayoutInflater inflater = getLayoutInflater();
         // xml
         View layout = inflater.inflate(R.layout.toast_layout, null);
+        TextView tv = (TextView) layout.findViewById(R.id.toastText);
 
-
-        Toast toast_w = new Toast(this);
-        toast_w.setView(layout);
-        toast_w.show();
+        tv.setText(toastText);
+        Toast tst = new Toast(this);
+        tst.setView(layout);
+        tst.show();
     }
 }
