@@ -58,8 +58,7 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
             //equals datta baai NG
             String warning = getResources().getString(R.string.warning_equals);
             ToastUtil toastUtil = new ToastUtil();
-            toastUtil.toastLayout(warning);
-
+            toastUtil.show(this,warning);
 
         }else{
             //ok
