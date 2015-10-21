@@ -10,13 +10,17 @@
         <activity
             android:name=".Standby"
             android:label="@string/app_name" >
+            <receiver android:name="com.redandborder.pingphone.UninstallReceiver" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
                 <data android:scheme="package"/>
             </intent-filter>
-        </activity>
+            </receiver>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+          </activity>
         <activity
             android:name=".SkypeSetting"
             android:label="@string/title_activity_skype_setting" >
