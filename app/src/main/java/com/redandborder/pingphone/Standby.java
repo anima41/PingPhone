@@ -90,16 +90,16 @@ public class Standby extends Activity implements OnClickListener {
                 });
             }
         }, 0, 1000);
-    }
 
-    //pass nashi no baai
-    Settings settings = new Settings();
-    String pass = settings.getPass(Standby.this);
-    Intent intent = null;
+        //pass nashi no baai
+        Settings settings = new Settings();
+        String pass = settings.getPass(Standby.this);
+        Intent intent = null;
 
-    if (TextUtils.isEmpty(pass)) {
-        intent = new Intent(Standby.this, PasswordSetting.class);
-        startActivity(intent);
+        if (TextUtils.isEmpty(pass)) {
+            intent = new Intent(Standby.this, PasswordSetting.class);
+            startActivity(intent);
+        }
     }
 
     public void onClick(View v) {
