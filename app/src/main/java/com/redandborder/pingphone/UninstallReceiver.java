@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
-public class UninstallReciever extends BroadcastReceiver {
+public class UninstallReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context,Intent intent){
         MyOpenHelper helper = new MyOpenHelper(context);
