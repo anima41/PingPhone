@@ -16,17 +16,13 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 import com.redandborder.pingphone.model.Settings;
 import com.redandborder.pingphone.util.ToastUtil;
@@ -35,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.redandborder.pingphone.util.MeasurementGAManager;
 
 
 public class Standby extends Activity implements OnClickListener {
@@ -56,6 +54,9 @@ public class Standby extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standby);
+
+        //Anrytics
+        MeasurementGAManager.sendGAScreen(this, "Standby");
 
         // keep screen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
