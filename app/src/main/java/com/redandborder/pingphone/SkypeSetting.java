@@ -44,6 +44,11 @@ public class SkypeSetting extends ActionBarActivity {
         String default_text = new Settings().getSkypeId(this);
         tvDefault.setText(default_text);
 
+        if (TextUtils.isEmpty(default_text)){
+            TextView defaultTitle = (TextView)findViewById(R.id.tv_skype_default);
+            defaultTitle.setVisibility(View.GONE);
+        }
+
         //initialize jikkou
         initialize();
     }
