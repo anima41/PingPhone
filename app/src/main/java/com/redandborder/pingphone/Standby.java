@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
@@ -149,8 +150,15 @@ public class Standby extends Activity implements OnClickListener {
                             }
                         }
                     })
-                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                    .setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
+
+                        }
+                    })
+                    .setNegativeButton("お忘れの方", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            MailUtil mailUtil =  new MailUtil(Standby.this);
+                            mailUtil.execute();
                         }
                     })
                     .show();
