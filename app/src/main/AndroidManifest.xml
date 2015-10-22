@@ -41,8 +41,8 @@
             android:label="@string/title_activity_settings_menu" >
         </activity>
         <activity
-            android:name=".TelSetting"
-            android:label="@string/title_activity_tel_setting" >
+            android:name=".MailSetting"
+            android:label="@string/title_activity_mail_setting" >
         </activity>
     </application>
 

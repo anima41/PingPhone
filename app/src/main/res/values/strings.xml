@@ -23,7 +23,7 @@
 
     <string name="menu_skype">スカイプ名の設定</string>
     <string name="menu_history">履歴</string>
-    <string name="menu_password">パスワード変更</string>
+    <string name="menu_password">パスワード</string>
     <string name="title_activity_password_setting">PasswordSetting</string>
 
     <string name="password_setting">パスワードの設定</string>
@@ -32,10 +32,10 @@
     <string name="pass_after">新しいパスワード</string>
     <string name="pass_set">登録</string>
 
-    <string name="tel_setting">SMS送信先の設定</string>
-    <string name="tel_setting_info">パスワードを忘れた時の\nSMS送信先電話番号を設定してください</string>
-    <string name="tel_before">前の電話番号</string>
-    <string name="tel_after">新しい電話番号（ハイフンなし）</string>
+    <string name="tel_setting">パスワード送信先の設定</string>
+    <string name="tel_setting_info">パスワードを忘れた時の\n送信先メールアドレスを設定してください</string>
+    <string name="tel_before">前のメールアドレス</string>
+    <string name="tel_after">新しいメールアドレス</string>
     <string name="tel_set">登録</string>
 
     <string name="warning_equals">違うパスワードを設定してください</string>
@@ -44,6 +44,6 @@
     <string name="title_activity_debug">Debug</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_settings_menu">SettingsMenu</string>
-    <string name="title_activity_tel_setting">TelSetting</string>
+    <string name="title_activity_mail_setting">MailSetting</string>
 
 </resources>
