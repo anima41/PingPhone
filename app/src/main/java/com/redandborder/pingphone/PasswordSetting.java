@@ -36,6 +36,15 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         // button set
         Button btn = (Button) findViewById(R.id.pass_set_button); //ToDo hituyouka
         btn.setOnClickListener(this);
+
+        //pass DB ni nai baai
+        String pass = new Settings().getPass(this);
+        if(TextUtils.isEmpty(pass)){
+            TextView tv = (TextView) findViewById(R.id.tv_pass_before);
+            EditText et1 = (EditText) findViewById(R.id.pass_before);
+            tv.setVisibility(View.GONE); //Invisible and tumeru
+            et1.setVisibility(View.GONE);
+        }
     }
 
     public void onClick(View view) {
