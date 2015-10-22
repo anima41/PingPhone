@@ -41,6 +41,10 @@
             android:name=".SettingsMenu"
             android:label="@string/title_activity_settings_menu" >
         </activity>
+        <activity
+            android:name=".MailSetting"
+            android:label="@string/title_activity_mail_setting" >
+        </activity>
     </application>
 
 </manifest>
