@@ -32,6 +32,7 @@
     <string name="pass_before">前のパスワード</string>
     <string name="pass_after">新しいパスワード</string>
     <string name="pass_set">登録</string>
+    <string name="pass_skip">スキップ</string>
 
     <string name="tel_setting">パスワード送信先の設定</string>
     <string name="tel_setting_info">パスワードを忘れた時の\n送信先メールアドレスを設定してください</string>
