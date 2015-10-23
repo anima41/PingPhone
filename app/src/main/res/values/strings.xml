@@ -21,6 +21,7 @@
     <string name="skype_button">押</string>
     <string name="title_activity_standby">Standby</string>
 
+    <string name="menu_setting">設定メニュー</string>
     <string name="menu_skype">スカイプ名の設定</string>
     <string name="menu_history">履歴</string>
     <string name="menu_password">パスワード</string>
@@ -41,9 +42,14 @@
     <string name="warning_equals">違うパスワードを設定してください</string>
     <string name="pass_change">変更しました</string>
 
+    <string name="menu_password_setting">パスワード関連設定</string>
+    <string name="password_setting_change">パスワードの設定</string>
+    <string name="mail_setting">パスワード送信先の設定</string>
+
     <string name="title_activity_debug">Debug</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_settings_menu">SettingsMenu</string>
     <string name="title_activity_mail_setting">MailSetting</string>
+    <string name="title_activity_password_menu">PasswordMenu</string>
 
 </resources>
