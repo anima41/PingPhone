@@ -16,24 +16,23 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
-import com.redandborder.pingphone.util.MailUtil;
+import com.redandborder.pingphone.util.MeasurementGAManager;
 import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.redandborder.pingphone.util.MeasurementGAManager;
 
 
 public class Standby extends Activity implements OnClickListener {
@@ -122,22 +121,29 @@ public class Standby extends Activity implements OnClickListener {
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
-            skypeCall(idText, this);
+            //skypeCall(idText, this);
+
+            //startService
+            Intent intent = new Intent(Standby.this, TryService.class);
+            startService(intent);
+
 
         } else if (v == menuSetBtn) {
-            final EditText editView = new EditText(Standby.this);
+            LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View diLayout = inflater.inflate(R.layout.dialog_layout, (ViewGroup)findViewById(R.id.dialog_root));
+            //final EditText editView = new EditText(Standby.this);
             //Dialog
             new AlertDialog.Builder(Standby.this)
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .setTitle("パスワードを入力してください")
-                    .setView(editView)
+                    .setView(diLayout)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
                             Settings settings = new Settings();
                             String pass = settings.getPass(Standby.this);
 
-                            String inputPass = editView.getText().toString();
+                            String inputPass = findViewById(R.id.et_dialog).toString();
 
                             if (pass.equals(inputPass)) {
                                 //match yes
@@ -150,17 +156,19 @@ public class Standby extends Activity implements OnClickListener {
                             }
                         }
                     })
-                    .setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
                         }
                     })
+                    /*
                     .setNegativeButton("お忘れの方", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            MailUtil mailUtil =  new MailUtil(Standby.this);
+                            MailUtil mailUtil = new MailUtil(Standby.this);
                             mailUtil.execute();
                         }
                     })
+                    */
                     .show();
         }
 
@@ -244,7 +252,8 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
+        Intent intent = new Intent(Standby.this, TryService.class);
+        stopService(intent);
     }
 
 }
-
