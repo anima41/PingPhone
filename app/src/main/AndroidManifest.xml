@@ -3,6 +3,7 @@
     package="com.redandborder.pingphone" >
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,6 +51,7 @@
             android:name=".MailSetting"
             android:label="@string/title_activity_mail_setting" >
         </activity>
+        <service android:name=".TryService"></service>
     </application>
 
 </manifest>

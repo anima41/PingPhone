@@ -122,7 +122,17 @@ public class Standby extends Activity implements OnClickListener {
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
-            skypeCall(idText, this);
+            //skypeCall(idText, this);
+
+            //startService
+            Intent intent = new Intent(Standby.this, TryService.class);
+            try{
+                startService(intent);
+                Log.d(this.getClass().getName(),"start service");
+            }catch (Exception e){
+                Log.e(this.getClass().getName(),e.getMessage());
+            }
+
 
         } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
@@ -244,7 +254,8 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
+        Intent intent = new Intent(Standby.this, TryService.class);
+        stopService(intent);
     }
 
 }
-
