@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 
 
@@ -16,6 +17,9 @@ public class SettingsMenu extends ActionBarActivity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_menu);
+
+        // taskbar nashi
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //ToDo hoka ni kakikata aru nodeha?
         Button menuHistory = (Button)findViewById(R.id.menu_history);

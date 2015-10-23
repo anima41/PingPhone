@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.redandborder.pingphone.model.Settings;
 
@@ -22,6 +23,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // taskbar nashi
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //instans
         hdl = new Handler();

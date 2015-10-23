@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -32,6 +33,9 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_setting);
+
+        // taskbar nashi
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // button set
         Button btn = (Button) findViewById(R.id.pass_set_button); //ToDo hituyouka

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class SkypeSetting extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skype_setting);
+
+        // taskbar nashi
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         TextView tvDefault = (TextView) findViewById(R.id.skype_default);
         String default_text = new Settings().getSkypeId(this);
