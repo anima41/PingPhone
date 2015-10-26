@@ -134,7 +134,7 @@ public class Standby extends Activity implements OnClickListener {
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
-            //skypeCall(idText, this);
+            skypeCall(idText, this);
 
             Context context = getApplicationContext();
             Intent intent = new Intent(context,MessageService.class);
