@@ -81,6 +81,7 @@ public class Standby extends Activity implements OnClickListener {
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
 
+
         //1s gotoni run
         mTimer.schedule(new TimerTask() {
 
