@@ -1,7 +1,9 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.service.MessageService;
 import com.redandborder.pingphone.service.ToastService;
 import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.ToastUtil;
@@ -132,9 +135,18 @@ public class Standby extends Activity implements OnClickListener {
 
             //skypeCall(idText, this);
 
-
-            Intent intent = new Intent(Standby.this,com.redandborder.pingphone.service.ToastService.class);
+            Context context = getApplicationContext();
+            Intent intent = new Intent(context,MessageService.class);
             startService(intent);
+
+            PendingIntent pendingIntent = PendingIntent.getService(context,0,intent,0);
+
+            AlarmManager alarmManager =(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            long time = Calendar.getInstance().getTimeInMillis();
+            alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    time,5*1000,
+                    pendingIntent);
 
         } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
@@ -256,7 +268,7 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
-        Intent intent = new Intent(Standby.this,ToastService.class);
+        Intent intent = new Intent(Standby.this,MessageService.class);
         stopService(intent);
 
     }
