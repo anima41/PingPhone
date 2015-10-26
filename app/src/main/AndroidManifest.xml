@@ -50,7 +50,7 @@
             android:name=".MailSetting"
             android:label="@string/title_activity_mail_setting" >
         </activity>
-        <service android:name=".service.ToastService"/>
+        <service android:name=".service.MessageService"/>
     </application>
 
 </manifest>

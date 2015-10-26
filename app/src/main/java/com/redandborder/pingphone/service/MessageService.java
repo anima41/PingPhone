@@ -33,7 +33,7 @@ public class MessageService extends Service{
     public int onStartCommand(Intent it,int id,int startId){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
         builder.setSmallIcon(R.mipmap.ic_launcher);
-        NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
+        manager = NotificationManagerCompat.from(getApplicationContext());
         manager.notify(NOTIFICATION_MINIMUM_ID,builder.build());
 
 
