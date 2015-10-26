@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.service.ToastService;
 import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.ToastUtil;
 
@@ -55,6 +56,8 @@ public class Standby extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standby);
+
+
 
         //Anrytics
         MeasurementGAManager.sendGAScreen(this, "Standby");
@@ -103,7 +106,12 @@ public class Standby extends Activity implements OnClickListener {
             intent = new Intent(Standby.this, PasswordSetting.class);
             startActivity(intent);
         }
+
+
+
     }
+
+
 
     public void onClick(View v) {
         //layout set
@@ -122,7 +130,11 @@ public class Standby extends Activity implements OnClickListener {
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
-            skypeCall(idText, this);
+            //skypeCall(idText, this);
+
+
+            Intent intent = new Intent(Standby.this,com.redandborder.pingphone.service.ToastService.class);
+            startService(intent);
 
         } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
@@ -243,6 +255,9 @@ public class Standby extends Activity implements OnClickListener {
             mTimer.cancel();
             mTimer = null;
         }
+
+        Intent intent = new Intent(Standby.this,ToastService.class);
+        stopService(intent);
 
     }
 
