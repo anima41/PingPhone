@@ -16,8 +16,13 @@ public class MessageService extends Service {
     public int onStartCommand(Intent it, int id, int startId) {
         ActivityManager activityManager = (ActivityManager) getSystemService(Service.ACTIVITY_SERVICE);
         String className = activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
+        String skypeHistory = "com.skype.android.app.mai.HubMateroalActivity";
 
-        Toast.makeText(getApplicationContext(), className, Toast.LENGTH_SHORT).show();
+        if (className.equals(skypeHistory)){
+            String warning = "戻るボタンを押してください";
+            Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_LONG).show();
+        }
+
 
         //saikidou
         return START_NOT_STICKY;

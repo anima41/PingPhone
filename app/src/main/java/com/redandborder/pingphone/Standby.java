@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
@@ -61,8 +59,6 @@ public class Standby extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standby);
-
-
 
         //Anrytics
         MeasurementGAManager.sendGAScreen(this, "Standby");
@@ -120,8 +116,6 @@ public class Standby extends Activity implements OnClickListener {
 
 
     public void onClick(View v) {
-        //layout set
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_down set
         Resources res = getResources();
         btn_down = (Drawable) res.getDrawable(R.drawable.button_down);
@@ -129,7 +123,6 @@ public class Standby extends Activity implements OnClickListener {
 
         if (v == callButton) {
             // btn tap
-            layout.setBackgroundColor(Color.DKGRAY);
             callButton.setBackground(btn_down);
 
             //skype call
@@ -148,7 +141,7 @@ public class Standby extends Activity implements OnClickListener {
             alarmManager =(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
-                    time,5*1000,
+                    time,1*1000,
                     pendingIntent);
 
         } else if (v == menuSetBtn) {
@@ -249,15 +242,10 @@ public class Standby extends Activity implements OnClickListener {
 
     protected void onResume() {
         super.onResume();
-
         //iro chage
-        //layout set
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_up set
         Resources res = getResources();
         btn_up = (Drawable) res.getDrawable(R.drawable.button_up);
-
-        layout.setBackgroundColor(Color.WHITE);
         callButton.setBackground(btn_up);
 
         if (alarmManager != null){
