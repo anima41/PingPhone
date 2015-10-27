@@ -1,7 +1,9 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.service.MessageService;
+import com.redandborder.pingphone.service.ToastService;
 import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.ToastUtil;
 
@@ -56,6 +60,8 @@ public class Standby extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standby);
 
+
+
         //Anrytics
         MeasurementGAManager.sendGAScreen(this, "Standby");
 
@@ -74,6 +80,7 @@ public class Standby extends Activity implements OnClickListener {
 
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
+
 
         //1s gotoni run
         mTimer.schedule(new TimerTask() {
@@ -103,7 +110,12 @@ public class Standby extends Activity implements OnClickListener {
             intent = new Intent(Standby.this, PasswordSetting.class);
             startActivity(intent);
         }
+
+
+
     }
+
+
 
     public void onClick(View v) {
         //layout set
@@ -123,6 +135,19 @@ public class Standby extends Activity implements OnClickListener {
             String idText = settings.getSkypeId(this);
 
             skypeCall(idText, this);
+
+            Context context = getApplicationContext();
+            Intent intent = new Intent(context,MessageService.class);
+            startService(intent);
+
+            PendingIntent pendingIntent = PendingIntent.getService(context,0,intent,0);
+
+            AlarmManager alarmManager =(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            long time = Calendar.getInstance().getTimeInMillis();
+            alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    time,5*1000,
+                    pendingIntent);
 
         } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
@@ -243,6 +268,9 @@ public class Standby extends Activity implements OnClickListener {
             mTimer.cancel();
             mTimer = null;
         }
+
+        Intent intent = new Intent(Standby.this,MessageService.class);
+        stopService(intent);
 
     }
 
