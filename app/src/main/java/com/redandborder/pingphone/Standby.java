@@ -148,7 +148,7 @@ public class Standby extends Activity implements OnClickListener {
             alarmManager =(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
-                    time,5*1000,
+                    time,1*1000,
                     pendingIntent);
 
         } else if (v == menuSetBtn) {
