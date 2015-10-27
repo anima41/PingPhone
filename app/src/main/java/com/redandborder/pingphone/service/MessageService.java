@@ -3,10 +3,8 @@ package com.redandborder.pingphone.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-
-import com.redandborder.pingphone.R;
+import android.widget.Toast;
 
 
 public class MessageService extends Service {
@@ -19,17 +17,11 @@ public class MessageService extends Service {
 
     @Override
     public int onStartCommand(Intent it, int id, int startId) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-        builder.setSmallIcon(R.mipmap.ic_launcher);
-        manager = NotificationManagerCompat.from(getApplicationContext());
-        manager.notify(NOTIFICATION_MINIMUM_ID, builder.build());
-
-        //saikidou
-        return START_NOT_STICKY;
+         Toast.makeText(getApplicationContext(), "Application", Toast.LENGTH_SHORT).show();
+        return NOTIFICATION_MINIMUM_ID;
     }
 
     public void onDestroy() {
-        manager.cancel(NOTIFICATION_MINIMUM_ID);
 
     }
 
