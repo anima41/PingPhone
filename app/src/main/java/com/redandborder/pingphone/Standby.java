@@ -28,16 +28,14 @@ import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
 import com.redandborder.pingphone.service.MessageService;
-import com.redandborder.pingphone.service.ToastService;
 import com.redandborder.pingphone.util.MailUtil;
+import com.redandborder.pingphone.util.MeasurementGAManager;
 import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.redandborder.pingphone.util.MeasurementGAManager;
 
 
 public class Standby extends Activity implements OnClickListener {
@@ -54,6 +52,10 @@ public class Standby extends Activity implements OnClickListener {
     private static final String TAG = "Standby";
     private Button callButton;
     private Button menuSetBtn;
+
+    private Intent intent = null;
+
+    private AlarmManager alarmManager =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,13 +139,13 @@ public class Standby extends Activity implements OnClickListener {
             skypeCall(idText, this);
 
             Context context = getApplicationContext();
-            Intent intent = new Intent(context,MessageService.class);
+            intent = new Intent(context,MessageService.class);
             startService(intent);
 
-            PendingIntent pendingIntent = PendingIntent.getService(context,0,intent,0);
+            PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 
-            AlarmManager alarmManager =(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
             long time = Calendar.getInstance().getTimeInMillis();
+            alarmManager =(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     time,5*1000,
@@ -258,6 +260,11 @@ public class Standby extends Activity implements OnClickListener {
         layout.setBackgroundColor(Color.WHITE);
         callButton.setBackground(btn_up);
 
+        if (alarmManager != null){
+            PendingIntent pendingIntent = PendingIntent.getService(this,0,intent,0);
+            alarmManager.cancel(pendingIntent);
+        }
+
     }
 
     @Override
@@ -269,8 +276,10 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
-        Intent intent = new Intent(Standby.this,MessageService.class);
-        stopService(intent);
+        if (alarmManager != null){
+            PendingIntent pendingIntent = PendingIntent.getService(this,0,intent,0);
+            alarmManager.cancel(pendingIntent);
+        }
 
     }
 
