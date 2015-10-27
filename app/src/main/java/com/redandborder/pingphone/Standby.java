@@ -28,16 +28,14 @@ import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
 import com.redandborder.pingphone.service.MessageService;
-import com.redandborder.pingphone.service.ToastService;
 import com.redandborder.pingphone.util.MailUtil;
+import com.redandborder.pingphone.util.MeasurementGAManager;
 import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.redandborder.pingphone.util.MeasurementGAManager;
 
 
 public class Standby extends Activity implements OnClickListener {
