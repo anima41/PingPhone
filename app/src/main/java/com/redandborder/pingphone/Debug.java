@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
 
-
 public class Debug extends ActionBarActivity {
 
     @Override
