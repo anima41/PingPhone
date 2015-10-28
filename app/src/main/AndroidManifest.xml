@@ -13,15 +13,16 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity
-            android:name=".Standby"
-            android:label="@string/app_name" >
-            <receiver android:name="com.redandborder.pingphone.UninstallReceiver" >
+        <receiver android:name="com.redandborder.pingphone.UninstallReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
                 <data android:scheme="package"/>
             </intent-filter>
-            </receiver>
+        </receiver>
+        <activity
+            android:name=".Standby"
+            android:label="@string/app_name" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
