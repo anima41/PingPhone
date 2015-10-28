@@ -1,14 +1,8 @@
 package com.redandborder.pingphone;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,7 +26,6 @@ public class Debug extends ActionBarActivity {
         TextView textView = new TextView(this);
         textView.setText(skypeid);
         layout.addView(textView);
-
 
         final Button button = new Button(this);
         button.setText("OK");

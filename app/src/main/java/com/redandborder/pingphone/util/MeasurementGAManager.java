@@ -1,16 +1,15 @@
 package com.redandborder.pingphone.util;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Logger;
-import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.analytics.GoogleAnalytics;
-
 import android.app.Application;
 import android.content.Context;
 
-import java.util.HashMap;
-
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Logger;
+import com.google.android.gms.analytics.Tracker;
 import com.redandborder.pingphone.R;
+
+import java.util.HashMap;
 
 
 public class MeasurementGAManager extends Application {
