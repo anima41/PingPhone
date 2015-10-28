@@ -170,6 +170,13 @@ public class Standby extends Activity implements OnClickListener {
                             }
                         }
                     })
+                    //ato de kesu
+                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                    })
+
+                    /*
                     .setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -181,6 +188,7 @@ public class Standby extends Activity implements OnClickListener {
                             mailUtil.execute();
                         }
                     })
+                    */
                     .show();
         }
 

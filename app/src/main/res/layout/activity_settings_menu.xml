@@ -15,7 +15,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/menu_history"
         android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#808080"
         android:background="@drawable/btn_menu"/>
 
     <Button
