@@ -51,5 +51,4 @@
             android:label="@string/title_activity_mail_setting" >
         </activity>
     </application>
-
 </manifest>
