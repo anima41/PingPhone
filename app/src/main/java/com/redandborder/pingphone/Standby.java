@@ -1,14 +1,15 @@
 package com.redandborder.pingphone;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,9 +24,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.MeasurementGAManager;
+import com.redandborder.pingphone.service.MessageService;
+import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.MeasurementGAManager;
 import com.redandborder.pingphone.util.ToastUtil;
 
@@ -34,6 +39,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.redandborder.pingphone.util.MeasurementGAManager;
 
 public class Standby extends Activity implements OnClickListener {
 
@@ -49,6 +55,10 @@ public class Standby extends Activity implements OnClickListener {
     private static final String TAG = "Standby";
     private Button callButton;
     private Button menuSetBtn;
+
+    private Intent intent = null;
+
+    private AlarmManager alarmManager =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,12 +131,7 @@ public class Standby extends Activity implements OnClickListener {
             Settings settings = new Settings();
             String idText = settings.getSkypeId(this);
 
-            //skypeCall(idText, this);
-
-            //startService
-            Intent intent = new Intent(Standby.this, TryService.class);
-            startService(intent);
-
+            skypeCall(idText, this);
 
         } else if (v == menuSetBtn) {
             LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -232,14 +237,15 @@ public class Standby extends Activity implements OnClickListener {
         super.onResume();
 
         //iro chage
-        //layout set
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.standby_layout);
         //button_up set
         Resources res = getResources();
         btn_up = (Drawable) res.getDrawable(R.drawable.button_up);
-
-        layout.setBackgroundColor(Color.WHITE);
         callButton.setBackground(btn_up);
+
+        if (alarmManager != null){
+            PendingIntent pendingIntent = PendingIntent.getService(this,0,intent,0);
+            alarmManager.cancel(pendingIntent);
+        }
 
     }
 
@@ -252,8 +258,11 @@ public class Standby extends Activity implements OnClickListener {
             mTimer = null;
         }
 
-        Intent intent = new Intent(Standby.this, TryService.class);
-        stopService(intent);
+        if (alarmManager != null){
+            PendingIntent pendingIntent = PendingIntent.getService(this,0,intent,0);
+            alarmManager.cancel(pendingIntent);
+        }
+
     }
 
 }
