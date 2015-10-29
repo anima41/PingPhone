@@ -7,7 +7,7 @@
 
     <string name="title">ping\nphone</string>
 
-    <string name="standby_info">おつなぎします</string>
+    <string name="standby_info">ボタンを押してください\nおつなぎします</string>
     <string name="watch">yyyy/mm/dd hh:mm</string>
     <string name="config_button">設定</string>
 
@@ -18,11 +18,10 @@
     <string name="id_set">登録</string>
     <string name="title_activity_skype_setting">SkypeSetting</string>
 
-    <string name="skype_button">押</string>
+    <string name="skype_button">CALL</string>
     <string name="title_activity_standby">Standby</string>
 
-    <string name="menu_setting">設定メニュー</string>
-    <string name="menu_skype">スカイプ名の設定</string>
+    <string name="menu_skype">スカイプ名\nの設定</string>
     <string name="menu_history">履歴</string>
     <string name="menu_password">パスワード</string>
     <string name="title_activity_password_setting">PasswordSetting</string>
