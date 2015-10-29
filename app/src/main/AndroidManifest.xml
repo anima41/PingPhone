@@ -57,5 +57,4 @@
 
         <service android:name=".service.MessageService"/>
     </application>
-
 </manifest>
