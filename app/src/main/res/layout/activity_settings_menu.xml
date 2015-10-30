@@ -6,14 +6,6 @@
               tools:context="com.redandborder.pingphone.SettingsMenu"
                 android:background="#00cc82">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:text="@string/password_setting"
-        android:textSize="30sp"/>
-
     <Button
         android:id="@+id/menu_history"
         android:layout_width="150dp"
@@ -23,7 +15,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/menu_history"
         android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#808080"
         android:background="@drawable/btn_menu"/>
 
     <Button

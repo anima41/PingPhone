@@ -32,9 +32,6 @@ public class SettingsMenu extends ActionBarActivity implements OnClickListener{
     public void onClick (View v){
         switch (v.getId()) {
             case R.id.menu_history:
-                Intent intent1 = new Intent(SettingsMenu.this, History.class);
-                startActivity(intent1);
-                SettingsMenu.this.finish();
                 break;
 
             case R.id.menu_skype:
@@ -44,7 +41,7 @@ public class SettingsMenu extends ActionBarActivity implements OnClickListener{
                 break;
 
             case R.id.menu_passward:
-                Intent intent3 = new Intent(SettingsMenu.this, PasswordMenu.class);
+                Intent intent3 = new Intent(SettingsMenu.this, PasswordSetting.class);
                 startActivity(intent3);
                 SettingsMenu.this.finish();
                 break;

@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -141,7 +142,7 @@ public class Standby extends Activity implements OnClickListener {
             alarmManager =(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
-                    time,2*1000,
+                    time, 2 * 1000,
                     pendingIntent);
 
         } else if (v == menuSetBtn) {
@@ -177,8 +178,11 @@ public class Standby extends Activity implements OnClickListener {
                     })
                     .setNegativeButton("お忘れの方", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            MailUtil mailUtil =  new MailUtil(Standby.this);
-                            mailUtil.execute();
+                            //MailUtil mailUtil =  new MailUtil(Standby.this);
+                            //mailUtil.execute();
+                            ToastUtil toastUtil = new ToastUtil();
+                            toastUtil.show(Standby.this, "アンインストールするとパスワードがリセットされます");
+
                         }
                     })
                     .show();
