@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.redandborder.pingphone" >
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+<manifest package="com.redandborder.pingphone"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+
     <application
+        android:name="com.redandborder.pingphone.util.MeasurementGAManager"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -51,7 +53,12 @@
             android:name=".MailSetting"
             android:label="@string/title_activity_mail_setting" >
         </activity>
+        <activity
+            android:name=".PasswordMenu"
+            android:label="@string/title_activity_password_menu" >
+            android:label="@string/title_activity_mail_setting">
+        </activity>
+
         <service android:name=".service.MessageService"/>
     </application>
-
 </manifest>

@@ -17,14 +17,18 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.redandborder.pingphone.model.Settings;
+import com.redandborder.pingphone.util.MeasurementGAManager;
 import com.redandborder.pingphone.service.MessageService;
 import com.redandborder.pingphone.util.MailUtil;
 import com.redandborder.pingphone.util.MeasurementGAManager;
@@ -35,6 +39,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.redandborder.pingphone.util.MeasurementGAManager;
 
 public class Standby extends Activity implements OnClickListener {
 
@@ -79,7 +84,6 @@ public class Standby extends Activity implements OnClickListener {
         mHandler = new Handler(getMainLooper());
         mTimer = new Timer();
 
-
         //1s gotoni run
         mTimer.schedule(new TimerTask() {
 
@@ -108,12 +112,7 @@ public class Standby extends Activity implements OnClickListener {
             intent = new Intent(Standby.this, PasswordSetting.class);
             startActivity(intent);
         }
-
-
-
     }
-
-
 
     public void onClick(View v) {
         //button_down set
@@ -145,19 +144,21 @@ public class Standby extends Activity implements OnClickListener {
                     pendingIntent);
 
         } else if (v == menuSetBtn) {
-            final EditText editView = new EditText(Standby.this);
+            LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View diLayout = inflater.inflate(R.layout.dialog_layout, (ViewGroup)findViewById(R.id.dialog_root));
+            //final EditText editView = new EditText(Standby.this);
             //Dialog
             new AlertDialog.Builder(Standby.this)
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .setTitle("パスワードを入力してください")
-                    .setView(editView)
+                    .setView(diLayout)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
                             Settings settings = new Settings();
                             String pass = settings.getPass(Standby.this);
 
-                            String inputPass = editView.getText().toString();
+                            String inputPass = findViewById(R.id.et_dialog).toString();
 
                             if (pass.equals(inputPass)) {
                                 //match yes
@@ -170,13 +171,6 @@ public class Standby extends Activity implements OnClickListener {
                             }
                         }
                     })
-                    //ato de kesu
-                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            }
-                    })
-
-                    /*
                     .setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -188,7 +182,6 @@ public class Standby extends Activity implements OnClickListener {
                             mailUtil.execute();
                         }
                     })
-                    */
                     .show();
         }
 
@@ -280,4 +273,3 @@ public class Standby extends Activity implements OnClickListener {
     }
 
 }
-

@@ -44,7 +44,7 @@ public class SettingsMenu extends ActionBarActivity implements OnClickListener{
                 break;
 
             case R.id.menu_passward:
-                Intent intent3 = new Intent(SettingsMenu.this, PasswordSetting.class);
+                Intent intent3 = new Intent(SettingsMenu.this, PasswordMenu.class);
                 startActivity(intent3);
                 SettingsMenu.this.finish();
                 break;
