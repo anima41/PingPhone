@@ -34,12 +34,12 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         setContentView(R.layout.activity_password_setting);
 
         // button set
-        Button btn = (Button) findViewById(R.id.pass_set_button); //ToDo hituyouka
+        Button btn = (Button) findViewById(R.id.pass_set_button);
         btn.setOnClickListener(this);
 
         //pass DB ni nai baai
         String pass = new Settings().getPass(this);
-        if(TextUtils.isEmpty(pass)){
+        if (TextUtils.isEmpty(pass)) {
             TextView tv = (TextView) findViewById(R.id.tv_pass_before);
             EditText et1 = (EditText) findViewById(R.id.pass_before);
             tv.setVisibility(View.GONE); //Invisible and tumeru
@@ -49,7 +49,7 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
 
     public void onClick(View view) {
         // button set
-        Button btn = (Button) findViewById(R.id.pass_set_button); //ToDo doko ni kakuka
+        Button btn = (Button) findViewById(R.id.pass_set_button);
         btn.setOnClickListener(this);
 
         //moji no shutoku
@@ -63,15 +63,57 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
         String t_before = sb1.toString();
         String t_after = sb2.toString();
 
-        if (t_before.equals(t_after)) {
+        // shokai kidouji katsu pass null
+        String pass = new Settings().getPass(this);
+        if (TextUtils.isEmpty(pass)) {
+            if (TextUtils.isEmpty(t_after)) {
+                String nullWarning = getResources().getString(R.string.warning_null);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, nullWarning, Toast.LENGTH_SHORT);
+            } else {
+                MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
+                final SQLiteDatabase db = helper.getWritableDatabase();
+
+                String sql = "INSERT OR REPLACE INTO " + helper.TABLE_NAME_SETTINGS + " (name,value) VALUES ('password','" + t_after + "');";
+                db.execSQL(sql);
+                db.close();
+
+                //toast
+                String change = getResources().getString(R.string.pass_change);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, change);
+
+                //instans
+                hdl = new Handler();
+                r = new SplashHandler();
+                //2hikisu de sitei
+                hdl.postDelayed(r, 2000);
+            }
+        }
+
+
+        // 2kaime
+        if (!TextUtils.isEmpty(pass)) {
+            // null check
+        } else if (TextUtils.isEmpty(t_before) || TextUtils.isEmpty(t_after)) {
+            String nullWarning = getResources().getString(R.string.warning_null);
+            ToastUtil toastUtil = new ToastUtil();
+            toastUtil.show(this, nullWarning);
+
+            //pass to hikaku
+        } else if (t_before.equals(pass)) {
+            String passWarning = getResources().getString(R.string.warning_passEquals);
+            ToastUtil toastUtil = new ToastUtil();
+            toastUtil.show(this, passWarning);
+
             //equals datta baai NG
-            //toast
+        } else if (t_before.equals(t_after)) {
             String warning = getResources().getString(R.string.warning_equals);
             ToastUtil toastUtil = new ToastUtil();
             toastUtil.show(this, warning);
 
-        } else {
             //ok
+        } else {
             MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
             final SQLiteDatabase db = helper.getWritableDatabase();
 
