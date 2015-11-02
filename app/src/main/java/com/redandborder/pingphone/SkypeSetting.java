@@ -44,8 +44,8 @@ public class SkypeSetting extends ActionBarActivity {
         String default_text = new Settings().getSkypeId(this);
         tvDefault.setText(default_text);
 
-        if (TextUtils.isEmpty(default_text)){
-            TextView defaultTitle = (TextView)findViewById(R.id.tv_skype_default);
+        if (TextUtils.isEmpty(default_text)) {
+            TextView defaultTitle = (TextView) findViewById(R.id.tv_skype_default);
             defaultTitle.setVisibility(View.GONE);
         }
 
@@ -71,11 +71,10 @@ public class SkypeSetting extends ActionBarActivity {
                 SpannableStringBuilder sb = (SpannableStringBuilder) et.getText();
                 String skypeID = sb.toString();
 
-                if (TextUtils.isEmpty(skypeID) || skypeID.length() == 0) {
+                if (TextUtils.isEmpty(skypeID) || skypeID.length() == 0 || skypeID.trim().equals("")){
                     //text nashi no baai
-                    ToastUtil toastUtil = new ToastUtil();
-                    toastUtil.show(SkypeSetting.this, "スカイプ名を設定してください");
-
+                        ToastUtil toastUtil = new ToastUtil();
+                        toastUtil.show(SkypeSetting.this, "スカイプ名を設定してください");
                 } else {
                     //text ok
                     //sql sengen
