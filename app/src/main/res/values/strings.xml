@@ -39,6 +39,8 @@
     <string name="tel_after">新しいメールアドレス</string>
     <string name="tel_set">登録</string>
 
+    <string name="warning_null">4桁の数字を入力してください</string>
+    <string name="warning_passEquals">パスワードが違います</string>
     <string name="warning_equals">違うパスワードを設定してください</string>
     <string name="pass_change">変更しました</string>
 
