@@ -23,6 +23,9 @@ import android.widget.Toast;
 import com.redandborder.pingphone.model.Settings;
 import com.redandborder.pingphone.util.ToastUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class SkypeSetting extends ActionBarActivity {
     //hensu shokika
@@ -62,14 +65,24 @@ public class SkypeSetting extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-
-
-                //editText sengen
+            //editText sengen
                 EditText et = (EditText) findViewById(R.id.id_text);
 
                 //moji wo toru
                 SpannableStringBuilder sb = (SpannableStringBuilder) et.getText();
                 String skypeID = sb.toString();
+
+                //hankaku blank delete
+                String regex1 = " ";
+                Pattern p1 = Pattern.compile(regex1);
+                Matcher m1 = p1.matcher(skypeID);
+                skypeID = m1.replaceAll("");
+
+                //zenkaku blank delete
+                String regex2 = "　";
+                Pattern p2 = Pattern.compile(regex2);
+                Matcher m2 = p2.matcher(skypeID);
+                skypeID = m2.replaceAll("");
 
                 if (TextUtils.isEmpty(skypeID) || skypeID.length() == 0 || skypeID.trim().equals("")){
                     //text nashi no baai
