@@ -34,18 +34,33 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/watch"
-        android:textSize="30dp"
+        android:textSize="60dp"
         android:textColor="#FFFFFF"
         android:background="#009cff"/>
 
-    <Button
-        android:id="@+id/settingsMenuButton"
+    <TextView
+        android:id="@+id/standby_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="@string/date"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:background="#009cff"/>
+
+
+
+    <Button
+        android:id="@+id/settingsMenuButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:background="@mipmap/btn_settings"/>
 

@@ -8,7 +8,8 @@
     <string name="title">ping\nphone</string>
 
     <string name="standby_info">ボタンを押してください\nおつなぎします</string>
-    <string name="watch">yyyy/mm/dd hh:mm</string>
+    <string name="watch">hh:mm</string>
+    <string name="date">yyyy/mm/dd</string>
     <string name="config_button">設定</string>
 
     <string name="skype_setting">Skype名の設定</string>
