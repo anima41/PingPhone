@@ -34,6 +34,7 @@ import com.redandborder.pingphone.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,7 +44,8 @@ public class Standby extends Activity implements OnClickListener {
     private Handler mHandler;
     private Timer mTimer;
     // time format
-    private static SimpleDateFormat mSimpleDataFormat = new SimpleDateFormat("yyyy年　MM月dd日　HH:mm:ss");
+    private static SimpleDateFormat mSimpleWatchFormat = new SimpleDateFormat("HH:mm:ss");
+    private static SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日(E)", Locale.JAPAN);
 
     //button_down set
     protected Drawable btn_down;
@@ -90,12 +92,15 @@ public class Standby extends Activity implements OnClickListener {
                 mHandler.post(new Runnable() {
                     public void run() {
                         Calendar calendar = Calendar.getInstance();
-                        String nowDate = mSimpleDataFormat.format(calendar.getTime());
+                        String nowWatch = mSimpleWatchFormat.format(calendar.getTime());
+                        String nowDate = mSimpleDateFormat.format(calendar.getTime());
+
                         // TextView shutoku
                         TextView watchText = (TextView) findViewById(R.id.standby_watch);
-                        watchText.setText(nowDate);
-                        // TextView ichi
-                        watchText.setGravity(Gravity.CENTER_HORIZONTAL);
+                        watchText.setText(nowWatch);
+                        TextView dateText = (TextView) findViewById(R.id.standby_date);
+                        dateText.setText(nowDate);
+
                     }
                 });
             }
