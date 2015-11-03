@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -147,6 +148,9 @@ public class Standby extends Activity implements OnClickListener {
 
         } else if (v == menuSetBtn) {
             final EditText editView = new EditText(Standby.this);
+
+            //kisoku
+            editView.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             //Dialog
             new AlertDialog.Builder(Standby.this)
                     .setIcon(android.R.drawable.ic_dialog_info)
