@@ -3,7 +3,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.redandborder.pingphone.SkypeSetting">
+              tools:context="com.redandborder.pingphone.SkypeSetting"
+              android:background="#00cc82">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,7 +12,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textSize="30sp"
-        android:text="@string/skype_setting"/>
+        android:text="@string/skype_setting"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +22,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textSize="20sp"
-        android:text="@string/skype_setting_info"/>
+        android:text="@string/skype_setting_info"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/tv_skype_default"
@@ -28,7 +33,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textSize="20sp"
-        android:text="@string/skype_setting_default"/>
+        android:text="@string/skype_setting_default"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
 
     <TextView
         android:id="@+id/skype_default"
@@ -36,17 +43,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/id_text"
         android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:gravity="bottom"
+        android:gravity="bottom|center"
         android:layout_marginTop="50dp"
         android:textSize="30dp"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:background="#FFFFFF"/>
 
     <Button
         android:id="@+id/skype_set"
@@ -55,6 +65,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:textSize="20dp"
-        android:text="@string/id_set"/>
+        android:text="@string/id_set"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>

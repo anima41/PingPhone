@@ -112,7 +112,7 @@ public class Standby extends Activity implements OnClickListener {
         Intent intent = null;
 
         if (TextUtils.isEmpty(pass)) {
-            intent = new Intent(Standby.this, PasswordSetting.class);
+            intent = new Intent(Standby.this, Info.class);
             startActivity(intent);
         }
 

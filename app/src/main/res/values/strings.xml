@@ -12,6 +12,22 @@
     <string name="date">yyyy/mm/dd</string>
     <string name="config_button">設定</string>
 
+    <string name="info_title">ピンフォンの使い方</string>
+    <string name="info_order">
+        ピンフォンをインストールいただき
+        \nありがとうございます。
+        \n
+        \n事前準備
+        \n1.スカイプをインストールします。
+        \n2.スカイプの設定をします。
+        \n
+        \nピンフォンの設定
+        \n1.設定画面を開くためのパスワードを設定します。
+        \n2.通話先のスカイプ名を設定します。
+        \n3.端末にスピーカーをつなげてお使いください。
+    </string>
+    <string name="info_button">設定する</string>
+
     <string name="skype_setting">Skype名の設定</string>
     <string name="skype_setting_info">通話先のSkype名を入力してください</string>
     <string name="skype_setting_default">現在の通話先</string>
@@ -54,5 +70,6 @@
     <string name="title_activity_settings_menu">SettingsMenu</string>
     <string name="title_activity_mail_setting">MailSetting</string>
     <string name="title_activity_password_menu">PasswordMenu</string>
+    <string name="title_activity_info">Info</string>
 
 </resources>

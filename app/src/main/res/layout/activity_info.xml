@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.redandborder.pingphone.SkypeSetting"
+              android:background="#00cc82">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/info_title"
+        android:textSize="30sp"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/info_order"
+        android:textSize="18sp"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/info_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/info_button"
+        android:textSize="20dp"
+        android:background="#00cc82"
+        android:textColor="#FFFFFF"/>
+
+
+</LinearLayout>
