@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.redandborder.pingphone.model.Settings;
 import com.redandborder.pingphone.util.ToastUtil;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -70,7 +71,9 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
                 String nullWarning = getResources().getString(R.string.warning_null);
                 ToastUtil toastUtil = new ToastUtil();
                 toastUtil.show(this, nullWarning, Toast.LENGTH_SHORT);
+
             } else {
+                //ok
                 MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
                 final SQLiteDatabase db = helper.getWritableDatabase();
 
@@ -93,65 +96,69 @@ public class PasswordSetting extends ActionBarActivity implements OnClickListene
 
 
         // 2kaime
-        if (!TextUtils.isEmpty(pass)) {
+        if (pass != null) {
             // null check
-        } else if (TextUtils.isEmpty(t_before) || TextUtils.isEmpty(t_after)) {
-            String nullWarning = getResources().getString(R.string.warning_null);
-            ToastUtil toastUtil = new ToastUtil();
-            toastUtil.show(this, nullWarning);
+            if (TextUtils.isEmpty(t_before) || TextUtils.isEmpty(t_after)) {
+                String nullWarning = getResources().getString(R.string.warning_null);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, nullWarning);
+                return;
 
-            //pass to hikaku
-        } else if (t_before.equals(pass)) {
-            String passWarning = getResources().getString(R.string.warning_passEquals);
-            ToastUtil toastUtil = new ToastUtil();
-            toastUtil.show(this, passWarning);
+                //pass to hikaku
+            } else if (!t_before.equals(pass)) {
+                String passWarning = getResources().getString(R.string.warning_passEquals);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, passWarning);
+                return;
 
-            //equals datta baai NG
-        } else if (t_before.equals(t_after)) {
-            String warning = getResources().getString(R.string.warning_equals);
-            ToastUtil toastUtil = new ToastUtil();
-            toastUtil.show(this, warning);
+                //equals datta baai NG
+            } else if (t_before.equals(t_after)) {
+                String warning = getResources().getString(R.string.warning_equals);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, warning);
+                return;
 
-            //ok
-        } else {
-            MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
-            final SQLiteDatabase db = helper.getWritableDatabase();
+            }   else {
+                //ok
+                MyOpenHelper helper = new MyOpenHelper(PasswordSetting.this);
+                final SQLiteDatabase db = helper.getWritableDatabase();
 
-            String sql = "INSERT OR REPLACE INTO " + helper.TABLE_NAME_SETTINGS + " (name,value) VALUES ('password','" + t_after + "');";
-            db.execSQL(sql);
-            db.close();
+                String sql = "INSERT OR REPLACE INTO " + helper.TABLE_NAME_SETTINGS + " (name,value) VALUES ('password','" + t_after + "');";
+                db.execSQL(sql);
+                db.close();
 
-            //toast
-            String change = getResources().getString(R.string.pass_change);
-            ToastUtil toastUtil = new ToastUtil();
-            toastUtil.show(this, change);
+                //toast
+                String change = getResources().getString(R.string.pass_change);
+                ToastUtil toastUtil = new ToastUtil();
+                toastUtil.show(this, change);
 
-            //instans
-            hdl = new Handler();
-            r = new SplashHandler();
-            //2hikisu de sitei
-            hdl.postDelayed(r, 2000);
-        }
-
-    }
-
-
-    // SplashHandler
-    class SplashHandler implements Runnable {
-        public void run() {
-            Settings settings = new Settings();
-            String skypeId = settings.getSkypeId(PasswordSetting.this);
-            Intent intent = null;
-
-            if (TextUtils.isEmpty(skypeId)) {
-                //skypeID null datta baai
-                intent = new Intent(PasswordSetting.this, SkypeSetting.class);
-            } else {
-                //skypeID areba
-                intent = new Intent(PasswordSetting.this, Standby.class);
+                //instans
+                hdl = new Handler();
+                r = new SplashHandler();
+                //2hikisu de sitei
+                hdl.postDelayed(r, 2000);
             }
-            startActivity(intent);
-            PasswordSetting.this.finish();
         }
     }
+
+
+
+// SplashHandler
+class SplashHandler implements Runnable {
+    public void run() {
+        Settings settings = new Settings();
+        String skypeId = settings.getSkypeId(PasswordSetting.this);
+        Intent intent = null;
+
+        if (TextUtils.isEmpty(skypeId)) {
+            //skypeID null datta baai
+            intent = new Intent(PasswordSetting.this, SkypeSetting.class);
+        } else {
+            //skypeID areba
+            intent = new Intent(PasswordSetting.this, Standby.class);
+        }
+        startActivity(intent);
+        PasswordSetting.this.finish();
+    }
+}
 }
